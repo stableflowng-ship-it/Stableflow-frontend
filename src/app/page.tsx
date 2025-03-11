@@ -7,13 +7,14 @@ import git from '../assests/Variant7.png'
 import { PrimaryButton } from "@/components/primary-button";
 import { SecondaryButton } from "@/components/secondary-button";
 import { useRouter } from "next/navigation";
+
 export default function Home() {
   const router = useRouter()
   const handleClick = () => {
     router.push("/dashboard");
   };
   return (
-    <div  className="grid   pt-[10%] overflow-hidden    justify-center gap-[4rem]  items-center bg-cover bg-center" style={{ backgroundImage: "url('/image2.png')", backgroundPosition : "center" }}>
+    <div  className="grid   pt-[10%] overflow-hidden    justify-center gap-[4rem]  items-center bg-cover bg-center" style={{ backgroundImage: "url('/image3.svg')", backgroundPosition : "center" }}>
    <div className="flex justify-between px-[2rem] lg:px-0 items-center  ">
    <Image 
    src={logo}
