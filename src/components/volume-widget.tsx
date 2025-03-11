@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Eye as EyeSolid, EyeSlash as EyeOffSolid, Lightning as Zap } from "vue-iconsax"
+import { Eye, EyeOff, Zap } from "lucide-react"
 import { PrimaryButton } from "./primary-button"
 import { SecondaryButton } from "./secondary-button"
 
@@ -18,9 +18,9 @@ export default function VolumeWidget() {
           <span className="text-[#B0B0B0] text-[16px] font-medium">Total volume</span>
           <button onClick={() => setIsHidden(!isHidden)} className="ml-2 p-1 rounded-full hover:bg-gray-100">
             {isHidden ? (
-              <EyeOffSolid width={16} height={16} className="text-[#B0B0B0]" />
+              <EyeOff size={16} className="text-[#B0B0B0]" />
             ) : (
-              <EyeSolid width={16} height={16} className="text-[#B0B0B0]" />
+              <Eye size={16} className="text-[#B0B0B0]" />
             )}
           </button>
         </div>
