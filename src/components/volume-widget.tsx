@@ -1,36 +1,36 @@
 "use client"
-
 import { useState } from "react"
-import { Eye as EyeSolid, EyeSlash as EyeOffSolid, Lightning as Zap } from "vue-iconsax"
+import { Eye, EyeOff, Zap } from "lucide-react"
 import { PrimaryButton } from "./primary-button"
 import { SecondaryButton } from "./secondary-button"
-
+import share from '../assests/export.svg'
+import Image from "next/image"
 export default function VolumeWidget() {
   const [isHidden, setIsHidden] = useState(false)
   const [volumeValue] = useState("300 USDC")
 
   return (
-    <div className="relative w-[573px] bg-[#FFFFFF] rounded-[20px] overflow-hidden shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+    <div className="relative lg:w-[573px] bg-[#FFFFFF]  grid lg:items-start lg:justify-normal items-center justify-center w-screen lg:pl-0  rounded-[20px] overflow-hidden shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
       <div className="absolute inset-0 dotted-background"></div>
       <div className="relative z-10 px-[24px] py-[16px]">
         {/* Total volume section with eye icon */}
-        <div className="flex items-center">
+        <div className=" pl-[1rem] lg:pl-[0rem] flex items-center">
           <span className="text-[#B0B0B0] text-[16px] font-medium">Total volume</span>
-          <button onClick={() => setIsHidden(!isHidden)} className="ml-2 p-1 rounded-full hover:bg-gray-100">
+          <button onClick={() => setIsHidden(!isHidden)} className="ml-2 p-1 rounded-full cursor-pointer hover:bg-gray-100">
             {isHidden ? (
-              <EyeOffSolid width={16} height={16} className="text-[#B0B0B0]" />
+              <EyeOff size={16} className="text-[#B0B0B0]" />
             ) : (
-              <EyeSolid width={16} height={16} className="text-[#B0B0B0]" />
+              <Eye size={16} className="text-[#B0B0B0]" />
             )}
           </button>
         </div>
 
         {/* Volume value and Switch to NGN in column layout */}
-        <div className="flex flex-col">
+        <div className="flex flex-col  pl-[1rem] lg:pl-[0rem] ">
           <span className="text-[32px] text-[#121212] font-medium">{isHidden ? "⊛⊛⊛⊛⊛⊛" : volumeValue}</span>
 
           {/* Switch to NGN button with gradient text */}
-          <button className="px-[8px] py-[4px] text-[12px] rounded-full w-fit bg-white border border-[#EDEDED] shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+          <button className=" cursor-pointer px-[8px] py-[4px] text-[12px] rounded-full w-fit bg-white border border-[#EDEDED] shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
             <span
               className="inline-block"
               style={{
@@ -48,14 +48,25 @@ export default function VolumeWidget() {
 
         {/* Buttons with 52px spacing from top */}
         <div className="mt-[52px] flex">
-          <PrimaryButton className="mr-[10px]" shortcut="">
+          <PrimaryButton className="mr-[10px] cursor-pointer" shortcut="">
             <div className="flex items-center">
               <Zap className="mr-2 h-4 w-4" />
               <span>Start accepting crypto</span>
             </div>
           </PrimaryButton>
 
-          <SecondaryButton>Apply for payments kit</SecondaryButton>
+          <SecondaryButton className="cursor-pointer">
+         
+          <div  className="flex flex-row items-center justify-center gap-[0.5rem]">
+          <Image
+          src={share}
+          width={25}
+          height={25}
+          alt="share"
+          className="w-[25px] h-[25px]"
+          />
+             <h3> Apply for payments kit</h3></div>
+            </SecondaryButton>
         </div>
 
         {/* Supercharge text with 6px spacing */}
