@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { TertiaryButton } from "./tertiary-button"
-import { SecondaryButton } from "./secondary-button"
+import { SmallSecondaryButton } from "./secondary-button"
 import { AlertCircle } from "lucide-react"
 
 export interface TransactionNotificationProps {
@@ -255,12 +255,10 @@ export default function TransactionNotification({
                       </div>
 
                       {/* Right side with button */}
-                      <SecondaryButton
+                      <SmallSecondaryButton
+                        text="View transaction"
                         onClick={() => handleViewTransaction(notification.id)}
-                        className="text-sm px-3 py-1.5"
-                      >
-                        View transaction
-                      </SecondaryButton>
+                      />
                     </div>
                   </div>
                 </div>
