@@ -57,7 +57,7 @@ export default function Home() {
    </PrimaryButton>
 
    <SecondaryButton className="cursor-pointer" >
-   <h3  className="text-black font-[600] mr-[0.5rem] text-[14px] lg:text-[17px]">Apply for payments kit</h3>
+   <h3  className="text-black font-[600] mr-[0.5rem] text-[14px] lg:text-[16px]">Apply for payments kit</h3>
    </SecondaryButton>
    </div>
    <div className="flex ">

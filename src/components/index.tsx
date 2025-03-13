@@ -7,3 +7,4 @@ export * from './button';
 // Other components
 export { default as TransactionHistoryContainer } from './transaction-history-container';
 export { default as VolumeWidget } from './volume-widget';
+export { default as TransactionNotification } from './transaction-notification';

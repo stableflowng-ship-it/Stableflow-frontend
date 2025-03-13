@@ -14,7 +14,7 @@ const PrimaryButton = React.forwardRef<HTMLButtonElement, PrimaryButtonProps>(
           // Base styles
           "relative inline-flex items-center justify-center whitespace-nowrap",
           // Size and padding
-          "px-4 py-2", // 16px horizontal, 8px vertical padding
+          "lg:px-4 px-2 py-2", // 16px horizontal, 8px vertical padding
           // Text styling
           "text-white text-base font-semibold", // 16px semibold white text
           // Border radius

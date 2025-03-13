@@ -47,8 +47,8 @@ export default function VolumeWidget() {
         </div>
 
         {/* Buttons with 52px spacing from top */}
-        <div className="mt-[52px] flex">
-          <PrimaryButton className="mr-[10px] cursor-pointer" shortcut="">
+        <div className="mt-[52px] pl-[1rem] flex">
+          <PrimaryButton className=" cursor-pointer" shortcut="">
             <div className="flex items-center">
               <Zap className="mr-2 h-4 w-4" />
               <span>Start accepting crypto</span>
@@ -57,7 +57,7 @@ export default function VolumeWidget() {
 
           <SecondaryButton className="cursor-pointer">
          
-          <div  className="flex flex-row items-center justify-center gap-[0.5rem]">
+          <div  className="flex flex-row items-center justify-center gap-[0.2rem]">
           <Image
           src={share}
           width={25}
