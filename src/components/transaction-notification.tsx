@@ -87,22 +87,16 @@ export default function TransactionNotification({
   }
 
   return (
-    <div className="relative">
+    <div className="w-full">
       <div
-        className={`flex flex-col items-start p-0 gap-2 absolute ${containerClearing ? "animate-container-clear" : ""}`}
-        style={{
-          width: "574px",
-          height: "111px",
-        }}
+        className={`flex flex-col w-full items-start p-0 gap-4 ${containerClearing ? "animate-container-clear" : ""}`}
       >
-        {/* First column - Header row */}
+        {/* Header row */}
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-row items-center gap-2">
             <h2
               className="font-medium text-base leading-tight"
               style={{
-                width: "149px",
-                height: "22px",
                 fontFamily: "'SF Pro Text', sans-serif",
                 letterSpacing: "-0.02em",
                 color: "#121212",
@@ -145,13 +139,14 @@ export default function TransactionNotification({
           </TertiaryButton>
         </div>
 
-        {/* Second column - Stacked notifications - with 8px gap from first column */}
-        <div className="relative w-full mt-2" style={{ height: "80px" }}>
+        {/* Stacked notifications */}
+        <div className="relative w-full" style={{ height: "120px" }}>
           {notifications.map((notification, index) => {
+            // Use different sizes based on screen size but allow for full width
             const sizes = [
-              { width: "574px", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
-              { width: "515px", height: "64px", padding: "11.5539px", gap: "5.78px" },
-              { width: "447px", height: "64px", padding: "9.5085px", gap: "4.75px" },
+              { width: "100%", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
+              { width: "90%", height: "64px", padding: "11.5539px", gap: "5.78px" },
+              { width: "80%", height: "64px", padding: "9.5085px", gap: "4.75px" },
             ]
 
             const isClearing = clearingIndices.includes(index)
@@ -256,9 +251,9 @@ export default function TransactionNotification({
                       </div>
 
                       {/* Right side with button */}
-                      <Button
+                      <SmallSecondaryButton 
                         text="View transaction"
-                        onClick={() => handleViewTransaction(notification.id)}
+                        onClick={() => handleViewTransaction(notification.id)} 
                       />
                     </div>
                   </div>

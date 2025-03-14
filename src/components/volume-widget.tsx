@@ -14,7 +14,7 @@ export default function VolumeWidget() {
       <div className="absolute inset-0 dotted-background"></div>
       <div className="relative z-10 px-[24px] py-[16px]">
         {/* Total volume section with eye icon */}
-        <div className=" pl-[1rem] lg:pl-[0rem] flex items-center">
+        <div className="flex items-center">
           <span className="text-[#B0B0B0] text-[16px] font-medium">Total volume</span>
           <button onClick={() => setIsHidden(!isHidden)} className="ml-2 p-1 rounded-full cursor-pointer hover:bg-gray-100">
             {isHidden ? (
@@ -26,11 +26,11 @@ export default function VolumeWidget() {
         </div>
 
         {/* Volume value and Switch to NGN in column layout */}
-        <div className="flex flex-col  pl-[1rem] lg:pl-[0rem] ">
+        <div className="flex flex-col">
           <span className="text-[32px] text-[#121212] font-medium">{isHidden ? "⊛⊛⊛⊛⊛⊛" : volumeValue}</span>
 
           {/* Switch to NGN button with gradient text */}
-          <button className=" cursor-pointer px-[8px] py-[4px] text-[12px] rounded-full w-fit bg-white border border-[#EDEDED] shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+          <button className="cursor-pointer px-[8px] py-[4px] text-[12px] rounded-full w-fit bg-white border border-[#EDEDED] shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
             <span
               className="inline-block"
               style={{
@@ -47,26 +47,26 @@ export default function VolumeWidget() {
         </div>
 
         {/* Buttons with 52px spacing from top */}
-        <div className="mt-[52px] pl-[1rem] flex">
-          <PrimaryButton className=" cursor-pointer" shortcut="">
+        <div className="mt-[52px] flex gap-[12px]">
+          <PrimaryButton className="cursor-pointer" shortcut="">
             <div className="flex items-center">
               <Zap className="mr-2 h-4 w-4" />
               <span>Start accepting crypto</span>
             </div>
           </PrimaryButton>
 
-          <SecondaryButton className="cursor-pointer">
-         
-          <div  className="flex flex-row items-center justify-center gap-[0.2rem]">
-          <Image
-          src={share}
-          width={25}
-          height={25}
-          alt="share"
-          className="w-[25px] h-[25px]"
-          />
-             <h3> Apply for payments kit</h3></div>
-            </SecondaryButton>
+          <SecondaryButton className="cursor-pointer min-w-max">
+            <div className="flex flex-row items-center whitespace-nowrap gap-[0.2rem]">
+              <Image
+                src={share}
+                width={20}
+                height={20}
+                alt="share"
+                className="w-[20px] h-[20px]"
+              />
+              <span>Apply for payments kit</span>
+            </div>
+          </SecondaryButton>
         </div>
 
         {/* Supercharge text with 6px spacing */}
