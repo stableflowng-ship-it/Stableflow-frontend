@@ -87,22 +87,16 @@ export default function TransactionNotification({
   }
 
   return (
-    <div className="relative pb-[6rem] duration-500 ">
+    <div className="w-full">
       <div
-        className={`flex flex-col items-start p-0 gap-2 absolute ${containerClearing ? "animate-container-clear" : ""}`}
-        style={{
-          width: "574px",
-          height: "111px",
-        }}
+        className={`flex flex-col w-full items-start p-0 gap-4 ${containerClearing ? "animate-container-clear" : ""}`}
       >
-        {/* First column - Header row */}
-        <div className="flex flex-row items-center justify-between w-screen px-[1rem] lg:w-full">
+        {/* Header row */}
+        <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-row items-center gap-2">
             <h2
               className="font-medium text-base leading-tight"
               style={{
-                width: "149px",
-                height: "22px",
                 fontFamily: "'SF Pro Text', sans-serif",
                 letterSpacing: "-0.02em",
                 color: "#121212",
@@ -145,13 +139,14 @@ export default function TransactionNotification({
           </TertiaryButton>
         </div>
 
-        {/* Second column - Stacked notifications - with 8px gap from first column */}
-        <div className="lg:block hidden relative w-full mt-2" style={{ height: "80px" }}>
+        {/* Stacked notifications */}
+        <div className="relative w-full" style={{ height: "120px" }}>
           {notifications.map((notification, index) => {
+            // Use different sizes based on screen size but allow for full width
             const sizes = [
-              { width: "574px", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
-              { width: "515px", height: "64px", padding: "11.5539px", gap: "5.78px" },
-              { width: "447px", height: "64px", padding: "9.5085px", gap: "4.75px" },
+              { width: "100%", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
+              { width: "90%", height: "64px", padding: "11.5539px", gap: "5.78px" },
+              { width: "80%", height: "64px", padding: "9.5085px", gap: "4.75px" },
             ]
 
             const isClearing = clearingIndices.includes(index)
@@ -256,9 +251,9 @@ export default function TransactionNotification({
                       </div>
 
                       {/* Right side with button */}
-                      <SmallSecondaryButton
+                      <SmallSecondaryButton 
                         text="View transaction"
-                        onClick={() => handleViewTransaction(notification.id)}
+                        onClick={() => handleViewTransaction(notification.id)} 
                       />
                     </div>
                   </div>
@@ -267,133 +262,6 @@ export default function TransactionNotification({
             )
           })}
         </div>
-
-
-
-        <div className="lg:hidden block relative w-screen  mt-2" style={{ height: "80px" }}>
-          {notifications.map((notification, index) => {
-            const sizes = [
-              { width: "380px", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
-              { width: "350px", height: "64px", padding: "11.5539px", gap: "5.78px" },
-              { width: "300px", height: "64px", padding: "9.5085px", gap: "4.75px" },
-            ]
-
-            const isClearing = clearingIndices.includes(index)
-
-            return (
-              <div
-                key={notification.id}
-                className={`absolute left-1/2 transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
-                style={{
-                  width: sizes[index].width,
-                  height: sizes[index].height,
-                  top: index * -45, // -45px vertical spacing
-                  zIndex: 3 - index,
-                  position: "relative",
-                  borderRadius: "15px",
-                  overflow: "hidden",
-                  opacity: isClearing ? 0 : 1, // Start with opacity 1, animation will handle the transition
-                  transition: "opacity 0.3s ease-in-out",
-                }}
-              >
-                {/* Gradient border - using pseudo-element approach */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: "linear-gradient(180deg, #4AA2FF 0%, #7175F9 100%)",
-                    borderRadius: "15px",
-                    padding: "1px", // This creates the border effect
-                  }}
-                >
-                  {/* Inner content container with 100% corner radius smoothing */}
-                  <div
-                    className="absolute inset-0 flex flex-row justify-center items-center"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(233, 233, 233, 0.24) 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF",
-                      margin: "1px", // This creates space for the border
-                      padding: sizes[index].padding,
-                      gap: sizes[index].gap,
-                      borderRadius: "14px", // Slightly smaller than parent to show border
-                      // Apply 100% corner radius smoothing
-                      borderTopLeftRadius: "14px 14px",
-                      borderTopRightRadius: "14px 14px",
-                      borderBottomLeftRadius: "14px 14px",
-                      borderBottomRightRadius: "14px 14px",
-                    }}
-                  >
-                    {/* Notification content */}
-                    <div className="flex flex-row items-center justify-between w-full">
-                      {/* Left side with icon and text */}
-                      <div className="flex flex-row items-center gap-2">
-                        {/* Circle icon */}
-                        <div
-                          className="flex items-center justify-center rounded-full"
-                          style={{
-                            width: "36px",
-                            height: "36px",
-                            background: "linear-gradient(180deg, #7073F9 0%, #4AA2FF 100%)",
-                          }}
-                        >
-                          <AlertCircle className="w-5 h-5 text-white" />
-                        </div>
-
-                        {/* Text content */}
-                        <div className="flex flex-col">
-                          {/* First row */}
-                          <div className="flex flex-row items-center gap-2">
-                            <span
-                              style={{
-                                fontFamily: "'SF Pro Text', sans-serif",
-                                fontWeight: 500,
-                                fontSize: "14px",
-                                color: "#121212",
-                              }}
-                            >
-                              {notification.title}
-                            </span>
-                            <span
-                              style={{
-                                fontFamily: "'SF Pro Text', sans-serif",
-                                fontWeight: 400,
-                                fontSize: "12px",
-                                textDecorationLine: "underline",
-                                color: "#929292",
-                              }}
-                            >
-                              {notification.time}
-                            </span>
-                          </div>
-
-                          {/* Second row */}
-                          <span
-                            style={{
-                              fontFamily: "'SF Pro Text', sans-serif",
-                              fontWeight: 500,
-                              fontSize: "12px",
-                              color: "#959595",
-                            }}
-                          >
-                            {notification.description}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Right side with button */}
-                      <SmallSecondaryButton
-                        text="View transaction"
-                        onClick={() => handleViewTransaction(notification.id)}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-
-
-
       </div>
 
       {/* Add animation styles */}
