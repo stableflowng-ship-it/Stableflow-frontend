@@ -30,7 +30,6 @@ const page = () => {
   function Finalize() {
     setChecked(true)
   }
-
   useEffect(() => {
     if (step === 4) {
       let interval = setInterval(() => {
@@ -39,15 +38,12 @@ const page = () => {
       return () => clearInterval(interval);
     }
   }, [step]);
-
   const checklist = [
     "Business name added",
     "Configure receiver account",
     "Creating a crypto wallet",
     "You're set up!",
   ];
-
-
   return (
     <div className=' grid items-center lg:gap-[0rem] gap-[2rem]  justify-center' >
        <div className="flex justify-between w-screen pt-[10%]  lg:w-[100%]  lg:m-auto mt-[1rem] px-[0.7rem] lg:px-0 items-center  ">
@@ -69,7 +65,6 @@ const page = () => {
    />
    </div>
    </div>
-   
     <div className="grid pt-[2%]  overflow-hidden px-[rem] items-start justify-center gap-[3rem] lg:gap-[2rem] h-full   bg-cover bg-center" style={{ backgroundImage: "url('/image3.svg')", backgroundPosition : "center" }}>
    <div className=' grid w-screen lg:w-full '>
    <div className='flex items-center justify-between ml-[1rem] w-[90%] border-[1px] p-[0.5rem] bg-[#EFEFEF] rounded-3xl border-transparent'>

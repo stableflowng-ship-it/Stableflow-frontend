@@ -34,7 +34,7 @@ const TransactionHistoryContainer: React.FC<TransactionHistoryContainerProps> = 
         </TertiaryButton>
       </div>
       
-      <div className="flex-1 bg-white shadow-sm rounded-lg p-4">
+      <div className="flex-1 bg-white shadow-sm rounded-lg p-4" style={{ borderRadius: '20px' }}>
         {transactionCount === 0 && (
           <div className="h-full flex flex-col items-center justify-center">
             <Image
