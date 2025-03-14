@@ -2,11 +2,21 @@ import * as React from 'react';
 import { TertiaryButton } from './tertiary-button';
 import transcationIcon from '../assests/link.svg'
 import Image from 'next/image';
+
+type Transaction = {
+  id: number;
+  description: string;
+  amount: string;
+  date: string;
+};
+
 export interface TransactionHistoryContainerProps {
-  transactions?: any[];
+  transactions?: Transaction[];
   title?: string;
   emptyStateText?: string;
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   emptyStateImage?: string;
+  /* eslint-enable @typescript-eslint/no-unused-vars */
   downloadButtonText?: string;
 }
 
@@ -40,7 +50,7 @@ const TransactionHistoryContainer: React.FC<TransactionHistoryContainerProps> = 
             <Image
             height={24}
             width={24}
-              src={transcationIcon} 
+              src={emptyStateImage === "/api/placeholder/200/120" ? transcationIcon : emptyStateImage} 
               alt="Empty state" 
               className="w-[100px] h-[100px]"
             />

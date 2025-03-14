@@ -14,7 +14,8 @@ import export2 from "../../assests/export2.svg"
 import yellow from '../../assests/image6.svg'
 import green from '../../assests/tick-circle.svg'
 import image5 from "../../assests/import.svg"
-const page = () => {
+
+export default function Page() {
 
   function Copy() {
     alert('address copied!')
@@ -33,7 +34,7 @@ const page = () => {
 
   useEffect(() => {
     if (step === 4) {
-      let interval = setInterval(() => {
+      const interval = setInterval(() => {
         setProgress((prev) => (prev < 5 ? prev + 1 : 5));
       }, 1500);
       return () => clearInterval(interval);
@@ -283,5 +284,3 @@ alt='import'
     </div>
   )
 }
-
-export default page

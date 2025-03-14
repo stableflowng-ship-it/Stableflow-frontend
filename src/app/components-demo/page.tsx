@@ -7,15 +7,23 @@ import {
   TransactionNotification
 } from '@/components';
 
+// Define Transaction type for transactions
+interface Transaction {
+  id: number;
+  description: string;
+  amount: string;
+  date: string;
+}
+
 export default function ComponentsDemo() {
   // Sample transactions for demonstration
-  const sampleTransactions = [
+  const sampleTransactions: Transaction[] = [
     { id: 1, description: 'Payment received', amount: '$250.00', date: '2023-04-15' },
     { id: 2, description: 'Invoice #1234', amount: '$120.50', date: '2023-04-10' },
   ];
 
   // Empty transactions for empty state demo
-  const emptyTransactions: any[] = [];
+  const emptyTransactions: Transaction[] = [];
 
   return (
     <div className="min-h-screen bg-[#f7f7f7] pt-6 pb-12 px-8">
