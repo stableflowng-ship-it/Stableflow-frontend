@@ -50,7 +50,7 @@ export default function Page() {
   ];
 
   return (
-    <div className='grid items-center lg:gap-[0rem] gap-[2rem] justify-center bg-[#f7f7f7] min-h-screen'>
+    <div className='grid items-center overflow-hidden lg:gap-[0rem] gap-[2rem] justify-center bg-[#f7f7f7] min-h-screen'>
       <div className="flex justify-between w-screen lg:w-[100%] lg:m-auto mt-[1rem] px-[0.7rem] lg:px-0 items-center">
         <Image 
           src={logo}
@@ -71,9 +71,11 @@ export default function Page() {
         </div>
       </div>
       
-      <div className="flex flex-col pt-[2%] overflow-hidden items-start justify-center gap-[24px] h-full bg-[#f7f7f7]">
-        <div className='grid w-screen lg:w-full'>
-          <div className='flex items-center justify-between ml-[1rem] w-[90%] border-[1px] p-[0.5rem] bg-[#EFEFEF] rounded-3xl border-transparent'>
+      <div className="flex flex-col pt-[2%] overflow-hidden items-start justify-center gap-[24px]  h-full bg-[#f7f7f7] ">
+        <div className='grid w-screen lg:w-full  border-[#EFEFEF] rounded-t-2xl  bg-[#EFEFEF]'>
+          <div className='flex items-center justify-between ml-[1rem] w-[90%] py-[0.7rem]    bg-transparent '>
+          <div className="absolute -bottom-5 -left-6 w-10 h-5 bg-[#EFEFEF]  rounded-br-full"></div>
+          <div className="absolute -bottom-5 -right-6 w-10 h-5 bg-[#EFEFEF] rounded-bl-full"></div>
             <Dialog.Root open={open} onOpenChange={setOpen}>
               <Dialog.Trigger className='grid decoration-0 cursor-pointer'>
                 <h3 className='text-[16px] flex text-[#828282] font-[500]'>Hola👋,</h3>
@@ -81,7 +83,7 @@ export default function Page() {
               </Dialog.Trigger>
               <Dialog.Portal>
                 <Dialog.Overlay className="fixed px-[0.5rem] inset-0 bg-black/50 z-30" />
-                <Dialog.Content className="fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-2xl w-[90%] lg:w-[500px]">
+                <Dialog.Content className="fixed left-1/2 top-[65%] transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-2xl w-[90%] lg:w-[500px]">
                   {/* Step 1 */}
                   {step === 1 && (
                     <div className='grid gap-[2rem]'>

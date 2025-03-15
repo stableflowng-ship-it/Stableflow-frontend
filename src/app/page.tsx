@@ -2,8 +2,8 @@
 import React from "react";
 import Image from "next/image";
 import logo from '../assests/image1.png'
-import twit from '../assests/Variant6.svg'
-import git from '../assests/Variant7.svg'
+import twit from '../assests/x-logo.png'
+import git from '../assests/warpcast-logo.svg'
 import { PrimaryButton } from "@/components/primary-button";
 import { SecondaryButton } from "@/components/secondary-button";
 import { useRouter } from "next/navigation";
@@ -22,7 +22,7 @@ export default function Home() {
             alt="logo"
             width={100}
             height={100}
-            className="lg:w-[180px] lg:h-[40px] w-[120px] h-[25px]"
+            className="lg:w-[175px] lg:h-[38px] w-[120px] h-[25px]"
           />
           <div className="flex flex-row gap-[1rem]">
             <Image
@@ -45,11 +45,11 @@ export default function Home() {
           <h2 className="lg:text-[37px] text-[25px] font-[600]">
             Crypto <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent">accepted.</span> Cash delivered.<span className="text-[#909090]"> <br></br> Everyone </span> <span className="text-[#FFB767]">{';)'}</span> <span className="text-[#909090]">smiles.</span>
           </h2>
-          <h4 className="font-[400] text-center px-[0.5rem] lg:text-start text-[15px] lg:text-[18px] text-[#24292E]">
+          <h4 className="font-[400] text-center lg:px-0 px-[0.5rem] lg:text-start text-[15px] lg:text-[18px] text-[#24292E]">
             Unlock crypto liquidity for your business effortlessly and receive<br></br> cash instantly. No waiting time. No reconciliation.
           </h4>
         </div>
-        <div className="lg:grid flex flex-col gap-[1.5rem] lg:gap-[1.5rem] items-center justify-center">
+        <div className="lg:grid flex flex-col gap-[1.5rem] lg:gap-[1.5rem] w-full items-center justify-center">
           <div className="flex flex-row items-center justify-between gap-[2rem] lg:gap-[5rem]">
             <PrimaryButton className="cursor-pointer" onClick={handleClick}>
               <h3 className="text-[#FFFFFF] font-[600] mr-[0.5rem] text-[17px]">Start accepting</h3>

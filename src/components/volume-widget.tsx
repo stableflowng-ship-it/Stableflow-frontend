@@ -10,7 +10,11 @@ export default function VolumeWidget() {
   const [volumeValue] = useState("300 USDC")
 
   return (
-    <div className="relative lg:w-[573px] bg-[#FFFFFF]  grid lg:items-start lg:justify-normal items-center justify-center w-screen lg:pl-0  rounded-[20px] overflow-hidden shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+    <div className="relative lg:w-[573px] overflow-hidden bg-[#FFFFFF] rounded-t-4xl  grid lg:items-start lg:justify-normal items-center justify-center w-screen lg:pl-0  rounded-b-[20px]  shadow-[0_1px_1px_rgba(0,0,0,0.05)]"
+    style={{
+        clipPath: "ellipse(92% 95% at 50% 83%)"
+    }} 
+    >
       <div className="absolute inset-0 dotted-background"></div>
       <div className="relative z-10 px-[24px] py-[16px]">
         {/* Total volume section with eye icon */}

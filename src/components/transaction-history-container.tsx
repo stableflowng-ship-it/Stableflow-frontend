@@ -39,7 +39,7 @@ const TransactionHistoryContainer: React.FC<TransactionHistoryContainerProps> = 
           </div>
         </div>
         
-        <TertiaryButton>
+        <TertiaryButton className='cursor-pointer'>
           {downloadButtonText}
         </TertiaryButton>
       </div>
