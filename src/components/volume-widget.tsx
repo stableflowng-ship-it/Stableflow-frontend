@@ -1,20 +1,32 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Eye, EyeOff, Zap } from "lucide-react"
 import { PrimaryButton } from "./primary-button"
 import { SecondaryButton } from "./secondary-button"
 import share from '../assests/export.svg'
 import Image from "next/image"
+import NumberFlow from '@number-flow/react'
+
 export default function VolumeWidget() {
   const [isHidden, setIsHidden] = useState(false)
-  const [volumeValue] = useState("300 USDC")
+  const [currentValue, setCurrentValue] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
+  const targetValue = 300
+  
+  // This ensures consistent rendering between server and client
+  useEffect(() => {
+    setIsMounted(true);
+    
+    // Delay animation start to prevent hydration issues
+    const timer = setTimeout(() => {
+      setCurrentValue(targetValue);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="relative lg:w-[573px] overflow-hidden bg-[#FFFFFF] rounded-t-4xl  grid lg:items-start lg:justify-normal items-center justify-center w-screen lg:pl-0  rounded-b-[20px]  shadow-[0_1px_1px_rgba(0,0,0,0.05)]"
-    style={{
-        clipPath: "ellipse(92% 95% at 50% 83%)"
-    }} 
-    >
+    <div className="relative lg:w-[573px] overflow-hidden bg-[#FFFFFF] rounded-[20px] grid lg:items-start lg:justify-normal items-center justify-center w-screen lg:pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
       <div className="absolute inset-0 dotted-background"></div>
       <div className="relative z-10 px-[24px] py-[16px]">
         {/* Total volume section with eye icon */}
@@ -31,7 +43,16 @@ export default function VolumeWidget() {
 
         {/* Volume value and Switch to NGN in column layout */}
         <div className="flex flex-col">
-          <span className="text-[32px] text-[#121212] font-medium">{isHidden ? "⊛⊛⊛⊛⊛⊛" : volumeValue}</span>
+          <span className="text-[32px] text-[#121212] font-bold">
+            {isHidden ? "⊛⊛⊛⊛⊛⊛" : (
+              isMounted ? (
+                <NumberFlow 
+                  value={currentValue}
+                  suffix=" USDC"
+                />
+              ) : "0 USDC"
+            )}
+          </span>
 
           {/* Switch to NGN button with gradient text */}
           <button className="cursor-pointer px-[8px] py-[4px] text-[12px] rounded-full w-fit bg-white border border-[#EDEDED] shadow-[0_1px_1px_rgba(0,0,0,0.05)]">

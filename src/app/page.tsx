@@ -15,6 +15,39 @@ export default function Home() {
   };
   return (
     <>
+      <style jsx global>{`
+        @keyframes backgroundPulse {
+          0% {
+            opacity: 0.8;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0.8;
+          }
+        }
+        
+        @keyframes glowing {
+          0% {
+            text-shadow: 0 0 5px rgba(79, 166, 255, 0.5), 0 0 10px rgba(85, 83, 246, 0.3);
+          }
+          50% {
+            text-shadow: 0 0 10px rgba(79, 166, 255, 0.8), 0 0 20px rgba(85, 83, 246, 0.5);
+          }
+          100% {
+            text-shadow: 0 0 5px rgba(79, 166, 255, 0.5), 0 0 10px rgba(85, 83, 246, 0.3);
+          }
+        }
+        
+        .animate-background {
+          animation: backgroundPulse 8s infinite ease-in-out;
+        }
+        
+        .glow-text {
+          animation: glowing 2s infinite ease-in-out;
+        }
+      `}</style>
       <div className="grid pt-[10%] overflow-hidden justify-center gap-[4rem] items-center bg-cover bg-center" style={{ backgroundImage: "url('/image3.svg')", backgroundPosition: "center" }}>
         <div className="flex justify-between px-[2rem] lg:px-0 items-center">
           <Image 
@@ -43,7 +76,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col items-center lg:items-baseline gap-[1rem]">
           <h2 className="lg:text-[37px] text-[25px] font-[600]">
-            Crypto <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent">accepted.</span> Cash delivered.<span className="text-[#909090]"> <br></br> Everyone </span> <span className="text-[#FFB767]">{';)'}</span> <span className="text-[#909090]">smiles.</span>
+            Crypto <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent glow-text">accepted.</span> Cash delivered.<span className="text-[#909090]"> <br></br> Everyone </span> <span className="text-[#FFB767]">{';)'}</span> <span className="text-[#909090]">smiles.</span>
           </h2>
           <h4 className="font-[400] text-center lg:px-0 px-[0.5rem] lg:text-start text-[15px] lg:text-[18px] text-[#24292E]">
             Unlock crypto liquidity for your business effortlessly and receive<br></br> cash instantly. No waiting time. No reconciliation.
