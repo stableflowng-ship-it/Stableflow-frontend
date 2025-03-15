@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import logo from '../../assests/image1.png'
 import address from '../../assests/image4.svg'
@@ -10,12 +10,119 @@ import { TransactionNotification } from '@/components'
 import * as Dialog from "@radix-ui/react-dialog";
 import close from "../../assests/add.svg"
 import { PrimaryButton, TertiaryButton } from '@/components'
-import export2 from "../../assests/export2.svg"
 import yellow from '../../assests/image6.svg'
 import green from '../../assests/tick-circle.svg'
 import image5 from "../../assests/import.svg"
 import twit from '../../assests/x-logo.png'
 import git from '../../assests/warpcast-logo.svg'
+import export2 from "../../assests/export2.svg"
+
+interface BusinessDropdownSelectorProps {
+  placeholder?: string;
+  options: string[];
+  value: string;
+  onChange: (option: string) => void;
+  width?: string;
+}
+
+const BusinessDropdownSelector: React.FC<BusinessDropdownSelectorProps> = ({
+  placeholder = "Select an option",
+  options = [],
+  value,
+  onChange,
+  width = "454px"
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+        setIsFocused(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  
+  const handleSelect = (option: string) => {
+    onChange(option);
+    setIsOpen(false);
+  };
+  
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+    setIsFocused(!isOpen);
+  };
+
+  return (
+    <div className="flex flex-col items-start p-0 w-full max-w-md h-9" style={{ width }} ref={dropdownRef}>
+      <div 
+        className={`
+          box-border flex flex-row items-center justify-between p-2 px-4 w-full h-9
+          bg-gray-100 border cursor-pointer rounded-[10px]
+          ${isFocused ? 'border-blue-500' : 'border-gray-100'}
+        `}
+        onClick={toggleDropdown}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        tabIndex={0}
+      >
+        <div className="flex flex-row justify-between items-center w-full gap-4">
+          <span 
+            className={`
+              h-5 text-sm font-medium tracking-wide leading-tight
+              ${value ? 'text-gray-800' : 'text-gray-300'}
+              font-sans truncate
+            `}
+            style={{ letterSpacing: '0.002em' }}
+          >
+            {value || placeholder}
+          </span>
+          
+          <div className="flex items-center justify-center w-5 h-5">
+            <svg 
+              width="18" 
+              height="18" 
+              viewBox="0 0 18 18" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            >
+              <path 
+                d="M11.25 6.75L9 9L6.75 6.75" 
+                stroke="#292D32" 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      
+      {isOpen && (
+        <div className="absolute mt-10 w-full max-w-md bg-white rounded-[10px] shadow-lg z-10 max-h-60 overflow-y-auto">
+          {options.map((option, index) => (
+            <div 
+              key={index}
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm"
+              onClick={() => handleSelect(option)}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default function Page() {
   function Copy() {
@@ -25,6 +132,10 @@ export default function Page() {
   const [open, setOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [focusedInput, setFocusedInput] = useState<string | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState('');
+  const [bankName, setBankName] = useState('');
+  const [accountType, setAccountType] = useState('');
   
   function closee() {
     setStep(1)
@@ -83,10 +194,22 @@ export default function Page() {
               </Dialog.Trigger>
               <Dialog.Portal>
                 <Dialog.Overlay className="fixed px-[0.5rem] inset-0 bg-black/50 z-30" />
-                <Dialog.Content className="fixed left-1/2 top-[65%] transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-2xl w-[90%] lg:w-[500px]">
+                <Dialog.Content className="fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-[20px] w-[90%] lg:w-[500px]" style={{ borderRadius: '20px' }}>
+                  {/* Keyframes for gradient animation */}
+                  <style jsx>{`
+                    @keyframes gradient {
+                      0% {
+                        background-position: 0% 0%;
+                      }
+                      100% {
+                        background-position: 200% 0%;
+                      }
+                    }
+                  `}</style>
+                  
                   {/* Step 1 */}
                   {step === 1 && (
-                    <div className='grid gap-[2rem]'>
+                    <div className='grid gap-[16px]'>
                       <div className='flex flex-row items-center justify-between'>
                         <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">Set up your business entity</Dialog.Title>
                         <Image 
@@ -99,28 +222,93 @@ export default function Page() {
                         />
                       </div>
                       <div className='grid'>
-                        <p className="font-[400] text-[16px]">Business Name</p>
-                        <input type="text" className="w-full border p-2 rounded border-none focus:ring-0 outline-none" placeholder="Enter business name" />
+                        <p className="font-[400] text-[16px] mb-[8px]">Business Name</p>
+                        <div className="relative w-full">
+                          {/* Gradient Border Container */}
+                          <div className={`relative rounded-[10px] ${focusedInput === 'businessName' ? 'p-0.5' : 'p-0'}`}>
+                            {/* Animated gradient background (only visible when focused) */}
+                            {focusedInput === 'businessName' && (
+                              <div 
+                                className="absolute inset-0 rounded-[10px]"
+                                style={{
+                                  background: 'linear-gradient(90deg, #1F90FF, #504CF6, #1F90FF)',
+                                  backgroundSize: '200% auto',
+                                  animation: 'gradient 2s linear infinite',
+                                }}
+                              />
+                            )}
+                            
+                            {/* Input container */}
+                            <div 
+                              className={`
+                                relative flex items-center p-2 px-4 h-9 rounded-[10px]
+                                ${focusedInput === 'businessName' ? 'bg-white' : 'bg-gray-100 border border-gray-200'}
+                              `}
+                            >
+                              <input
+                                type="text"
+                                placeholder="Enter business name"
+                                onFocus={() => setFocusedInput('businessName')}
+                                onBlur={() => setFocusedInput(null)}
+                                className={`
+                                  w-full h-5 text-sm font-medium tracking-wide bg-transparent 
+                                  border-none outline-none focus:ring-0
+                                `}
+                              />
+                            </div>
+                          </div>
+                        </div>
                         <h3 className='text-[#959595] font-[500] text-[12px]'>*Use your business name as incorperated</h3>
                       </div>
                       <div className='grid'>
-                        <p className="font-[400] text-[16px]">Business contact</p>
-                        <input type="text" className="w-full border p-2 rounded border-none focus:ring-0 outline-none" placeholder="Enter business phone number" />
+                        <p className="font-[400] text-[16px] mb-[8px]">Business contact</p>
+                        <div className="relative w-full">
+                          {/* Gradient Border Container */}
+                          <div className={`relative rounded-[10px] ${focusedInput === 'businessContact' ? 'p-0.5' : 'p-0'}`}>
+                            {/* Animated gradient background (only visible when focused) */}
+                            {focusedInput === 'businessContact' && (
+                              <div 
+                                className="absolute inset-0 rounded-[10px]"
+                                style={{
+                                  background: 'linear-gradient(90deg, #1F90FF, #504CF6, #1F90FF)',
+                                  backgroundSize: '200% auto',
+                                  animation: 'gradient 2s linear infinite',
+                                }}
+                              />
+                            )}
+                            
+                            {/* Input container */}
+                            <div 
+                              className={`
+                                relative flex items-center p-2 px-4 h-9 rounded-[10px]
+                                ${focusedInput === 'businessContact' ? 'bg-white' : 'bg-gray-100 border border-gray-200'}
+                              `}
+                            >
+                              <input
+                                type="text"
+                                placeholder="Enter business phone number"
+                                onFocus={() => setFocusedInput('businessContact')}
+                                onBlur={() => setFocusedInput(null)}
+                                className={`
+                                  w-full h-5 text-sm font-medium tracking-wide bg-transparent 
+                                  border-none outline-none focus:ring-0
+                                `}
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div className='grid'>
-                        <p className="font-[400] text-[16px]">Business category</p>
-                        <select
-                          className="w-full bg-gray-100 px-4 py-2 cursor-pointer rounded-md border-none outline-none ring-0 text-gray-900"
-                          defaultValue=""
-                        >
-                          <option value="" disabled hidden className="text-red-400">
-                            Select Payment Method
-                          </option>
-                          <option value="cash">Cash</option>
-                          <option value="pos">POS</option>
-                        </select>
+                        <p className="font-[400] text-[16px] mb-[8px]">Business category</p>
+                        <BusinessDropdownSelector
+                          placeholder="Select Payment Method"
+                          options={['Cash', 'POS']}
+                          value={paymentMethod}
+                          onChange={(option: string) => setPaymentMethod(option)}
+                          width="100%"
+                        />
                       </div>
-                      <PrimaryButton shortcut="" onClick={() => setStep(2)} className="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded">
+                      <PrimaryButton shortcut="" onClick={() => setStep(2)} className="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-[10px] border-0">
                         Continue
                       </PrimaryButton>
                     </div>
@@ -128,7 +316,7 @@ export default function Page() {
 
                   {/* Step 2 */}
                   {step === 2 && (
-                    <div className='grid gap-[2rem]'>
+                    <div className='grid gap-[16px]'>
                       <div className='flex flex-row items-center justify-between'>
                         <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">Set up receiver account</Dialog.Title>
                         <Image 
@@ -141,39 +329,65 @@ export default function Page() {
                         />
                       </div>
                       <div className='grid'>
-                        <p className="font-[400] text-[16px]">Business category</p>
-                        <select
-                          className="w-full bg-gray-100 px-4 py-2 cursor-pointer rounded-md border-none outline-none ring-0 text-gray-900"
-                          defaultValue=""
-                        >
-                          <option value="" disabled hidden className="">
-                            Select a bank name
-                          </option>
-                          <option value="cash">Sterling bank</option>
-                          <option value="pos">First bank </option>
-                          <option value="pos">Access bank</option>
-                          <option value="pos">UBA</option>
-                        </select>
+                        <p className="font-[400] text-[16px] mb-[8px]">Business category</p>
+                        <BusinessDropdownSelector
+                          placeholder="Select a bank name"
+                          options={['Sterling bank', 'First bank', 'Access bank', 'UBA']}
+                          value={bankName}
+                          onChange={(option: string) => setBankName(option)}
+                          width="100%"
+                        />
                       </div>
                       <div className='grid'>
-                        <p className="font-[400] text-[16px]">Account number</p>
-                        <input type="text" className="w-full border p-2 rounded border-none focus:ring-0 outline-none" placeholder="Enter account number" />
-                        <div className='text-[#868686] border-blue-600 rounded-2xl border-[1px] w-fit flex items-start px-[1rem] py-[0.3rem]'>temidayo folajin</div>
+                        <p className="font-[400] text-[16px] mb-[8px]">Account number</p>
+                        <div className="relative w-full">
+                          {/* Gradient Border Container */}
+                          <div className={`relative rounded-[10px] ${focusedInput === 'accountNumber' ? 'p-0.5' : 'p-0'}`}>
+                            {/* Animated gradient background (only visible when focused) */}
+                            {focusedInput === 'accountNumber' && (
+                              <div 
+                                className="absolute inset-0 rounded-[10px]"
+                                style={{
+                                  background: 'linear-gradient(90deg, #1F90FF, #504CF6, #1F90FF)',
+                                  backgroundSize: '200% auto',
+                                  animation: 'gradient 2s linear infinite',
+                                }}
+                              />
+                            )}
+                            
+                            {/* Input container */}
+                            <div 
+                              className={`
+                                relative flex items-center p-2 px-4 h-9 rounded-[10px]
+                                ${focusedInput === 'accountNumber' ? 'bg-white' : 'bg-gray-100 border border-gray-200'}
+                              `}
+                            >
+                              <input
+                                type="text"
+                                placeholder="Enter account number"
+                                onFocus={() => setFocusedInput('accountNumber')}
+                                onBlur={() => setFocusedInput(null)}
+                                className={`
+                                  w-full h-5 text-sm font-medium tracking-wide bg-transparent 
+                                  border-none outline-none focus:ring-0
+                                `}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className='text-[#868686] border-blue-600 rounded-[100px] border-[1px] w-fit flex items-start px-[8px] py-[4px] mt-[8px] text-[14px] font-[500]'>Temidayo Folajin</div>
                       </div>
                       <div className='grid'>
-                        <p className="font-[400] text-[16px]">Account type</p>
-                        <select
-                          className="w-full bg-gray-100 px-4 py-2 cursor-pointer rounded-md border-none outline-none ring-0 text-gray-900"
-                          defaultValue=""
-                        >
-                          <option value="" disabled hidden className="text-red-400">
-                            Select an account type
-                          </option>
-                          <option value="cash">Cash</option>
-                          <option value="pos">POS</option>
-                        </select>
+                        <p className="font-[400] text-[16px] mb-[8px]">Account type</p>
+                        <BusinessDropdownSelector
+                          placeholder="Select an account type"
+                          options={['Cash', 'POS']}
+                          value={accountType}
+                          onChange={(option: string) => setAccountType(option)}
+                          width="100%"
+                        />
                       </div>
-                      <PrimaryButton shortcut="" onClick={() => setStep(3)} className="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded">
+                      <PrimaryButton shortcut="" onClick={() => setStep(3)} className="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-[10px] border-0">
                         Start accepting
                       </PrimaryButton>
                     </div>
@@ -181,7 +395,7 @@ export default function Page() {
 
                   {/* Step 3 */}
                   {step === 3 && (
-                    <div className='grid gap-[2rem]'>
+                    <div className='grid gap-[16px]'>
                       <div className='flex flex-row items-center justify-between'>
                         <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">Set up receiver account</Dialog.Title>
                         <Image 
@@ -195,29 +409,32 @@ export default function Page() {
                       </div>
                       <div className="flex justify-between p-[1rem] items-center border-[2px] cursor-pointer rounded-2xl border-[#E2E2E2]">
                         <h3 className='text-black font-[600] text-[16px]'>Read our terms of service</h3>
-                        <button onClick={Finalize} className='flex items-center cursor-pointer justify-center gap-[0.3rem]'>
-                          <h3 className='font-[500] text-[#8D8D8D]'>Read</h3>
+                        <button 
+                          onClick={Finalize}
+                          className="flex items-center gap-1 px-2 py-1 text-sm font-medium text-[#8D8D8D] bg-white rounded-full shadow-sm hover:bg-gray-50"
+                        >
+                          <span>Read</span>
                           <Image 
                             src={export2}
-                            height={20}
-                            width={20}
+                            height={16}
+                            width={16}
                             alt='export'
                           />
                         </button>
                       </div>
                       <div className="w-full">
                         {checked == true ?
-                          <PrimaryButton shortcut="" onClick={() => setStep(4)} className="mt-4 cursor-pointer px-4 py-2 w-full text-white rounded-2xl">
+                          <PrimaryButton shortcut="" onClick={() => setStep(4)} className="mt-4 cursor-pointer px-4 py-2 w-full text-white rounded-[10px] border-0">
                             I consent
                           </PrimaryButton>
-                        : <button className='bg-[#D3D3D3] w-full rounded-2xl text-white p-[0.5rem] cursor-not-allowed'>I consent</button>}
+                        : <button className='bg-[#D3D3D3] w-full rounded-[10px] border-0 text-white p-[0.5rem] cursor-not-allowed'>I consent</button>}
                       </div>
                     </div>
                   )}
                   
                   {/* Step 4 */}
                   {step === 4 && (
-                    <div className='grid gap-[2rem]'>
+                    <div className='grid gap-[16px]'>
                       <div className='flex flex-row items-center justify-between'>
                         <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">Set up receiver account</Dialog.Title>
                         <Image 
