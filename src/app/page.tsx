@@ -49,16 +49,16 @@ export default function Home() {
             Unlock crypto liquidity for your business effortlessly and receive<br></br> cash instantly. No waiting time. No reconciliation.
           </h4>
         </div>
-        <div className="lg:grid flex flex-col gap-[1.5rem] lg:gap-[1.5rem] w-full items-center justify-center">
-          <div className="flex flex-row items-center justify-between gap-[2rem] lg:gap-[5rem]">
+        <div className="flex flex-col gap-[16px] w-full items-left justify-left">
+          <div className="flex flex-row items-center gap-[12px]">
             <PrimaryButton className="cursor-pointer" onClick={handleClick}>
-              <h3 className="text-[#FFFFFF] font-[600] mr-[0.5rem] text-[17px]">Start accepting</h3>
+              <h3 className="text-[#FFFFFF] font-[600] mr-[0.5rem] text-[16px]">Start accepting</h3>
             </PrimaryButton>
             <SecondaryButton className="cursor-pointer">
               <h3 className="text-black font-[600] mr-[0.5rem] text-[14px] lg:text-[16px]">Apply for payments kit</h3>
             </SecondaryButton>
           </div>
-          <div className="flex">
+          <div className="flex text-left">
             <h3 className="text-[14px] font-[400] text-[#909090]">By logging in, you agree to our <span className="text-[#1E90FF]">Terms of service</span> & <span className="text-[#1E90FF]">Privacy Policy.</span></h3>
           </div>
         </div>

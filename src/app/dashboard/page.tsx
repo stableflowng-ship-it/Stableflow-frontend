@@ -182,9 +182,9 @@ export default function Page() {
         </div>
       </div>
       
-      <div className="flex flex-col pt-[2%] overflow-hidden items-start justify-center gap-[24px]  h-full bg-[#f7f7f7] ">
-        <div className='grid w-screen lg:w-full  border-[#EFEFEF] rounded-t-2xl  bg-[#EFEFEF]'>
-          <div className='flex items-center justify-between ml-[1rem] w-[90%] py-[0.7rem]    bg-transparent '>
+      <div className="flex flex-col pt-[0%] overflow-hidden items-start justify-center gap-[24px] h-full bg-[#f7f7f7] ">
+        <div className='flex flex-col w-screen lg:w-full border-[#EFEFEF] rounded-t-[20px] bg-[#EFEFEF]'>
+          <div className='flex items-center justify-between w-full py-[0.7rem] px-[1rem] bg-transparent'>
           <div className="absolute -bottom-5 -left-6 w-10 h-5 bg-[#EFEFEF]  rounded-br-full"></div>
           <div className="absolute -bottom-5 -right-6 w-10 h-5 bg-[#EFEFEF] rounded-bl-full"></div>
             <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -476,7 +476,7 @@ export default function Page() {
                 </Dialog.Content>
               </Dialog.Portal>
             </Dialog.Root>
-            <TertiaryButton className="cursor-pointer">
+            <TertiaryButton className="cursor-pointer ml-auto">
               <div className="flex items-center gap-2">
                 <Image
                   src={edit}

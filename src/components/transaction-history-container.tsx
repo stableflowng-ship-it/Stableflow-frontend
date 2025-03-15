@@ -14,9 +14,9 @@ export interface TransactionHistoryContainerProps {
   transactions?: Transaction[];
   title?: string;
   emptyStateText?: string;
-  /* eslint-disable @typescript-eslint/no-unused-vars */
+  //* eslint-disable @typescript-eslint/no-unused-vars */
   emptyStateImage?: string;
-  /* eslint-enable @typescript-eslint/no-unused-vars */
+  //* eslint-enable @typescript-eslint/no-unused-vars */
   downloadButtonText?: string;
 }
 
