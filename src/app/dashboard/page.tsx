@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import logo from '../../assests/image1.png'
 import address from '../../assests/image4.svg'
@@ -8,17 +8,11 @@ import { TransactionHistoryContainer } from '@/components'
 import edit from '../../assests/magicpen.svg'
 import { TransactionNotification } from '@/components'
 import * as Dialog from "@radix-ui/react-dialog";
-import close from "../../assests/add.svg"
-import { PrimaryButton, TertiaryButton } from '@/components'
-import yellow from '../../assests/image6.svg'
-import green from '../../assests/tick-circle.svg'
-import image5 from "../../assests/import.svg"
+import { TertiaryButton } from '@/components'
 import twit from '../../assests/x-logo.png'
 import git from '../../assests/warpcast-logo.svg'
-import export2 from "../../assests/export2.svg"
+
 import Modals from './modals'
-
-
 
 export default function Page() {
   function Copy() {
@@ -51,13 +45,10 @@ export default function Page() {
           />
         </div>
       </div>
-      
       <div className="flex flex-col pt-[0%] overflow-hidden items-start justify-center gap-[24px] h-full bg-[#f7f7f7] ">
         <div className='flex flex-col w-screen lg:w-full border-[#EFEFEF] rounded-t-[20px] bg-[#EFEFEF]'>
         <Dialog.Root open={open} onOpenChange={setOpen}>
           <div className='flex items-center justify-between w-full py-[0.7rem] px-[1rem] bg-transparent'>
-          
-           
               <Dialog.Trigger className='grid decoration-0 cursor-pointer'>
                 <h3 className='text-[16px] flex text-[#828282] font-[500]'>Hola👋,</h3>
                 <h3 className='text-[16px] text-[#121212] underline underline-offset-1 flex items-start font-[500]'>Enter your business name</h3>
