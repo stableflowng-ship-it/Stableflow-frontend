@@ -95,7 +95,7 @@ export default function TransactionNotification({
         <div className="flex flex-row items-center justify-between w-full">
           <div className="flex flex-row items-center gap-2">
             <h2
-              className="font-medium text-base leading-tight"
+              className="font-medium text-base leading-tight pl-[1rem]"
               style={{
                 fontFamily: "'SF Pro Text', sans-serif",
                 letterSpacing: "-0.02em",
@@ -133,7 +133,7 @@ export default function TransactionNotification({
             label="Clear all"
             onClick={clearAllNotifications}
             disabled={isClearing || notifications.length === 0}
-            className="cursor-pointer"
+            className="cursor-pointer mr-[1rem] lg:mr-0"
           >
             Clear all
           </TertiaryButton>
@@ -144,7 +144,7 @@ export default function TransactionNotification({
           {notifications.map((notification, index) => {
             // Use different sizes based on screen size but allow for full width
             const sizes = [
-              { width: "100%", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
+              { width: "95%", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
               { width: "90%", height: "64px", padding: "11.5539px", gap: "5.78px" },
               { width: "80%", height: "64px", padding: "9.5085px", gap: "4.75px" },
             ]
