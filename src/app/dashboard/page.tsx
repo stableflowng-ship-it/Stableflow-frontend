@@ -11,9 +11,10 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { TertiaryButton } from '@/components'
 import twit from '../../assests/x-logo.png'
 import git from '../../assests/warpcast-logo.svg'
-
+import trash from '../../assests/trash.svg'
+import wrong1 from "../../assests/group.svg"
 import Modals from './modals'
-
+import Dropdown from './dropDown'
 export default function Page() {
   function Copy() {
     alert('address copied!')
@@ -35,13 +36,7 @@ export default function Page() {
           className="lg:w-[180px] lg:h-[40px] w-[100px] h-[18px]"
         />
         <div className="flex flex-row gap-[1rem]">
-          <Image
-            src={address}
-            alt="logo"
-            width={30}
-            height={30}
-            className="lg:w-[150px] lg:h-[150px] w-[90px] h-[35px] cursor-pointer"
-            onClick={Copy}
+          <Dropdown
           />
         </div>
       </div>
