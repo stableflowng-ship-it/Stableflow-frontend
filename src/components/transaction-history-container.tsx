@@ -31,8 +31,8 @@ const TransactionHistoryContainer: React.FC<TransactionHistoryContainerProps> = 
 
   return (
     <div className="w-full items-center justify-center flex flex-col rounded bg-transparent">
-      <div className="flex justify-between w-full items-center mb-4">
-        <div className="flex items-center">
+      <div className="flex justify-between w-full items-center mb-4 px-[0.6rem] lg:px-0">
+        <div className="flex items-center justify-center">
           <h2 className="text-base font-medium text-gray-900">{title}</h2>
           <div className="ml-2 px-2 py-1 rounded-full border border-gray-200 text-xs">
             {transactionCount}

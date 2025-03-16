@@ -7,7 +7,11 @@ import share from '../assests/export.svg'
 import Image from "next/image"
 import NumberFlow from '@number-flow/react'
 
-export default function VolumeWidget() {
+
+interface OpenModal {
+  openDialog: () => void; // Function to open dialog
+}
+export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
   const [isHidden, setIsHidden] = useState(false)
   const [currentValue, setCurrentValue] = useState(0)
   const [isMounted, setIsMounted] = useState(false)
@@ -26,12 +30,12 @@ export default function VolumeWidget() {
   }, []);
 
   return (
-    <div className="relative lg:w-[573px] overflow-hidden bg-[#FFFFFF] rounded-[20px] grid lg:items-start lg:justify-normal items-center justify-center w-screen lg:pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+    <div className="relative lg:w-[573px]  bg-[#FFFFFF] rounded-[20px] grid lg:items-start lg:justify-normal items-center justify-center w-screen pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
       <div className="absolute inset-0 dotted-background"></div>
-      <div className="relative z-10 px-[24px] py-[16px]">
+      <div className="relative z-10 px-[24px] py-[16px] lg:pl-[1rem] pl-[2.3rem] ">
         {/* Total volume section with eye icon */}
         <div className="flex items-center">
-          <span className="text-[#B0B0B0] text-[16px] font-medium">Total volume</span>
+          <span className="text-[#B0B0B0] text-[16px] font-medium pl-[0.5rem] lg:pl-0">Total volume</span>
           <button onClick={() => setIsHidden(!isHidden)} className="ml-2 p-1 rounded-full cursor-pointer hover:bg-gray-100">
             {isHidden ? (
               <EyeOff size={16} className="text-[#B0B0B0]" />
@@ -42,7 +46,7 @@ export default function VolumeWidget() {
         </div>
 
         {/* Volume value and Switch to NGN in column layout */}
-        <div className="flex flex-col">
+        <div className="flex flex-col pl-[0.5rem] lg:pl-0">
           <span className="text-[32px] text-[#121212] font-bold">
             {isHidden ? "⊛⊛⊛⊛⊛⊛" : (
               isMounted ? (
@@ -72,8 +76,8 @@ export default function VolumeWidget() {
         </div>
 
         {/* Buttons with 52px spacing from top */}
-        <div className="mt-[52px] flex gap-[12px]">
-          <PrimaryButton className="cursor-pointer" shortcut="">
+        <div className="mt-[52px] flex gap-[5px] lg:gap-[12px]">
+          <PrimaryButton className="cursor-pointer" shortcut="" onClick={openDialog}>
             <div className="flex items-center">
               <Zap className="mr-2 h-4 w-4" />
               <span>Start accepting crypto</span>
