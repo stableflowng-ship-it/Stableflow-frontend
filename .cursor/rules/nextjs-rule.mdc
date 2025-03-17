@@ -21,6 +21,7 @@ Planning Phase
 
 Code Style
 - Use tabs for indentation
+- Add comments for every single line of code
 - Use single quotes for strings (except to avoid escaping)
 - Omit semicolons (unless required for disambiguation)
 - Eliminate unused variables
