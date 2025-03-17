@@ -39,7 +39,7 @@ const TertiaryButton = React.forwardRef<HTMLButtonElement, TertiaryButtonProps>(
         }}
         {...props}
       >
-        <span className="relative z-10">{children || label}</span>
+        <span className="relative z-0">{children || label}</span>
       </button>
     );
   }
