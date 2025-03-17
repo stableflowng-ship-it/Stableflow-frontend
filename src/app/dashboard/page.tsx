@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import logo from '../../assests/image1.png'
 import address from '../../assests/image4.svg'
@@ -19,10 +19,8 @@ export default function Page() {
   function Copy() {
     alert('address copied!')
   }
-  const [step, setStep] = useState(1);
   const [open, setOpen] = useState(false);
   function closee() {
-    setStep(1)
     setOpen(false)
   }
   return (
