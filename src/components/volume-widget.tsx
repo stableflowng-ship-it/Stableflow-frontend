@@ -30,7 +30,7 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
   }, []);
 
   return (
-    <div className="relative lg:w-[573px]  bg-[#FFFFFF] rounded-[20px] grid lg:items-start lg:justify-normal items-center justify-center w-screen pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+    <div className="relative lg:w-[573px]  bg-[#FFFFFF]  rounded-[20px] grid lg:items-start lg:justify-normal md:items-start md:justify-normal items-center justify-center w-screen pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
       <div className="absolute inset-0 dotted-background"></div>
       <div className="relative z-10 px-[24px] py-[16px] lg:pl-[1rem] pl-[2.3rem] ">
         {/* Total volume section with eye icon */}

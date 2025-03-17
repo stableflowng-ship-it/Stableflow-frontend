@@ -31,14 +31,14 @@ export default function Page() {
           alt="logo"
           width={100}
           height={100}
-          className="lg:w-[180px] lg:h-[40px] w-[100px] h-[18px]"
+          className="lg:w-[180px] lg:h-[40px] w-[100px] h-[22px]"
         />
         <div className="flex flex-row gap-[1rem]">
           <Dropdown
           />
         </div>
       </div>
-      <div className="flex flex-col pt-[0%] overflow-hidden items-start justify-center gap-[24px] h-full bg-[#f7f7f7] ">
+      <div className="flex flex-col  overflow-hidden items-start justify-center gap-[24px] h-full bg-[#f7f7f7] ">
         <div className='flex flex-col w-screen lg:w-full border-[#EFEFEF] rounded-t-[20px] bg-[#EFEFEF]'>
         <Dialog.Root open={open} onOpenChange={setOpen}>
           <div className='flex items-center justify-between w-full py-[0.7rem] px-[1rem] bg-transparent'>

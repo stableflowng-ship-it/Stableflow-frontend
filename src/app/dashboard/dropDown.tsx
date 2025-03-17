@@ -23,7 +23,7 @@ export default function Dropdown() {
           className=" cursor-pointer"
          
         />
-        <h3 className='text-[#121212] font-[500] text-[16px] '> 0xb1....5678</h3>
+        <h3 className='text-[#121212] font-[500] text-[14px] lg:text-[16px] '> 0xb1....5678</h3>
       </button>
 
       {/* Sliding Dropdown */}
