@@ -44,8 +44,7 @@ const Modals: React.FC<ChildProps> = ({ closefunction, step,forward,back,progres
       "Configure receiver account",
       "Creating a crypto wallet",
       "You're set up!",
-    ];
-    
+    ];  
   return (
      <Dialog.Portal>
                    <Dialog.Overlay >
@@ -65,7 +64,6 @@ const Modals: React.FC<ChildProps> = ({ closefunction, step,forward,back,progres
                    exit={{ y: "100%", opacity: 0 }}
                    transition={{ type: "spring", duration :0.2,stiffness: 400,bounce:0.25,mass:0.5, }}
                    >
-
                      <style jsx>{`
                        @keyframes gradient {
                          0% {

@@ -68,30 +68,21 @@ export default function AuthPage() {
       router.push('/');
     }
   };
-
-  // Handle OTP input change
   const handleChange = (index: number, value: string) => {
-    // Allow only single digit
     if (/^\d?$/.test(value)) {
       const newOtpValues = [...otpValues];
       newOtpValues[index] = value;
       setOtpValues(newOtpValues);
-
-      // Auto focus to next input
       if (value && index < 3 && inputRefs[index + 1].current) {
         inputRefs[index + 1].current?.focus();
       }
     }
   };
-
-  // Handle key press for backspace
   const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
     if (e.key === "Backspace" && !otpValues[index] && index > 0 && inputRefs[index - 1].current) {
       inputRefs[index - 1].current?.focus();
     }
   };
-
-  // Paste functionality
   const handlePaste = (e: React.ClipboardEvent) => {
     e.preventDefault();
     const pastedData = e.clipboardData.getData("text").trim();

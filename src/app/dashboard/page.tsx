@@ -17,6 +17,7 @@ import Dropdown from './dropDown'
 import { useAppSelector } from '../store/store'
 import { resetInputValue } from '../store/inputSlice'
 import { useAppDispatch } from '../store/store'
+
 export default function Page() {
   const dispatch = useAppDispatch()
   const inputValue = useAppSelector((state) => state.input.value);
