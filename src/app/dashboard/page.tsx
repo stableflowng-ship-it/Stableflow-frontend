@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import Image from 'next/image'
 import logo from '../../assests/image1.png'
 import address from '../../assests/image4.svg'
@@ -11,18 +12,61 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { TertiaryButton } from '@/components'
 import twit from '../../assests/x-logo.png'
 import git from '../../assests/warpcast-logo.svg'
-import trash from '../../assests/trash.svg'
-import wrong1 from "../../assests/group.svg"
 import Modals from './modals'
 import Dropdown from './dropDown'
+import { useAppSelector } from '../store/store'
+import { resetInputValue } from '../store/inputSlice'
+import { useAppDispatch } from '../store/store'
 export default function Page() {
-  function Copy() {
-    alert('address copied!')
-  }
+  const dispatch = useAppDispatch()
+  const inputValue = useAppSelector((state) => state.input.value);
+  const handleReset = () => {
+    dispatch(resetInputValue()); // Calls the Redux reset action
+  };
+
+
+
+   const [checked, setChecked] = useState(false);
+      const [progress, setProgress] = useState(0);
+  const [step, setStep] = useState(1);
   const [open, setOpen] = useState(false);
+  const [businessName, setBusinnesName] = useState('');
   function closee() {
     setOpen(false)
+    setStep(1)
+    setProgress(0)
+    setChecked(false)
   }
+
+  function close1() {
+    setOpen(false)
+    setStep(1)
+    setProgress(0)
+    setChecked(false)
+    handleReset()
+  }
+  function forward() {
+    setStep(step +1 )
+  }
+  function back() {
+    setStep(step-1)
+  }
+
+  useEffect(() => {
+    if (step === 4) {
+      const interval = setInterval(() => {
+        setProgress((prev) => (prev < 5 ? prev + 1 : 5));
+      }, 1500);
+      return () => clearInterval(interval);
+    }
+  }, [step]);
+
+   function Finalize() {
+        setChecked(true)
+      }
+      function openModal() {
+       setOpen(true)
+      }
   return (
     <div className='w-screen grid items-center overflow-hidden lg:gap-[2rem] gap-[2rem] justify-center bg-[#f7f7f7] min-h-screen'>
       <div className="flex justify-between w-screen lg:w-[100%] lg:mt-[4rem] mt-[1rem] px-[0.7rem] lg:px-0 items-center">
@@ -40,13 +84,18 @@ export default function Page() {
       </div>
       <div className="flex flex-col  overflow-hidden items-start justify-center gap-[24px] h-full bg-[#f7f7f7] ">
         <div className='flex flex-col w-screen lg:w-full border-[#EFEFEF] rounded-t-[20px] bg-[#EFEFEF]'>
-        <Dialog.Root open={open} onOpenChange={setOpen}>
+        <Dialog.Root open={open} onOpenChange={closee}>
           <div className='flex items-center justify-between w-full py-[0.7rem] px-[1rem] bg-transparent'>
-              <Dialog.Trigger className='grid decoration-0 cursor-pointer'>
+              <div className='grid decoration-0 cursor-pointer' onClick={openModal}>
                 <h3 className='text-[16px] flex text-[#828282] font-[500]'>Hola👋,</h3>
+                {inputValue ?
+                <h3 className='text-[25px] text-[#121212] underline underline-offset-1 flex items-start font-[500]'>{inputValue}</h3>
+                :
                 <h3 className='text-[16px] text-[#121212] underline underline-offset-1 flex items-start font-[500]'>Enter your business name</h3>
-              </Dialog.Trigger>
-              <Modals closefunction={closee}/>
+                }
+                </div>
+              <Modals closefunction={closee} close1={close1}  step={step} forward={forward} back={back} checked={checked} progress={progress} finalize={Finalize}/>
+            { inputValue ?
             <TertiaryButton className="cursor-pointer ml-auto">
               <div className="flex items-center gap-2">
                 <Image
@@ -58,6 +107,7 @@ export default function Page() {
                 <span>Edit name</span>
               </div>
             </TertiaryButton>
+: ''}
           </div>
           <VolumeWidget openDialog={() => setOpen(true)} />
           </Dialog.Root>

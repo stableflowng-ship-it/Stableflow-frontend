@@ -10,7 +10,7 @@ import logo from '../assests/image1.png'
 import { log } from 'console';
 import { PrimaryButton } from './primary-button';
 import { SecondaryButton } from './secondary-button';
-import { DownloadCloud } from 'lucide-react';
+import { motion } from "framer-motion"
 import download from '../assests/document-download.svg'
 type Transaction = {
   id: number;
@@ -105,10 +105,23 @@ alt='usd logo'
    </div>
    </Dialog.Trigger> 
    <Dialog.Portal>
-                <Dialog.Overlay className="fixed z-20 inset-0 bg-black/50 backdrop-blur-sm" />
-                <Dialog.Content className="z-30 fixed top-1/2 mt-[3rem] left-1/2 flex flex-col gap-[2rem] transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-2xl shadow-lg w-[95%] lg:w-120"
-                style={{ backgroundImage: "url('/image3.svg')", backgroundPosition: "center" }}
-                >
+                <Dialog.Overlay >
+                  <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.4 }}
+                           className="fixed z-20 inset-0 bg-black/50 backdrop-blur-md"
+                          /> 
+                /</Dialog.Overlay>
+                <Dialog.Content >
+                  <motion.div
+                  className="z-30 fixed  top-3/5 lg:top-3/6 mt-[2rem] left-1/2 flex flex-col gap-[2rem] transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-2xl shadow-lg w-[95%] lg:w-120"
+                  style={{ backgroundImage: "url('/image3.svg')", backgroundPosition: "center" }}
+                  initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "100%", opacity: 0 }}
+                transition={{ type: "spring", duration :0.2,stiffness: 400,bounce:0.25,mass:0.5, }}>
                   <Dialog.Title className="text-xl font-bold flex items-center justify-center">
                   <Image 
                   src={logo}
@@ -182,8 +195,8 @@ alt='usd logo'
                       Cancel
                     </SecondaryButton>
                   </Dialog.Close>
-                  <PrimaryButton shortcut=' ' className='flex flex-row items-center justify-center cursor-pointer'>
-                  <div className='flex flex-row items-center justify-center gap-[0.2rem] lg:gap-[0.4rem]'>
+                  <PrimaryButton shortcut=' ' className='flex flex-row w-[50%] items-center justify-center cursor-pointer'>
+                  <div className='flex flex-row items-center py-[0.1rem] justify-center gap-[0.2rem] lg:gap-[0.4rem]'>
                   <Image 
 src={download}
 height={15}
@@ -195,6 +208,7 @@ className='pl-[0.1rem]'
 </div>
                   </PrimaryButton>
                   </div>
+                  </motion.div>
                 </Dialog.Content>
               </Dialog.Portal>
           </Dialog.Root> 

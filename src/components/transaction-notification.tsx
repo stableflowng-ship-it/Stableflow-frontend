@@ -1,10 +1,12 @@
 "use client"
-
 import { useState } from "react"
 import { TertiaryButton } from "./tertiary-button"
 import { SmallSecondaryButton } from "./secondary-button"
 import { AlertCircle } from "lucide-react"
+import transactionss from "./mockData"
+import * as Dialog from "@radix-ui/react-dialog";
 
+import TransanctionHistoryModal from "@/app/modals/TransanctionNotificationModal"
 export interface TransactionNotificationProps {
   initialNotifications?: Array<{
     id: number;
@@ -17,41 +19,35 @@ export interface TransactionNotificationProps {
 export default function TransactionNotification({ 
   initialNotifications 
 }: TransactionNotificationProps = {}) {
-  const [notifications, setNotifications] = useState(
-    initialNotifications || [
-      {
-        id: 1,
-        title: "Transaction alert!",
-        time: "30secs ago",
-        description: "You just received 20 USDC approx ₦5,000",
-      },
-      {
-        id: 2,
-        title: "Transaction alert!",
-        time: "2mins ago",
-        description: "You just received 50 USDC approx ₦12,500",
-      },
-      {
-        id: 3,
-        title: "Transaction alert!",
-        time: "5mins ago",
-        description: "You just received 10 USDC approx ₦2,500",
-      },
-    ]
-  )
 
-  // Animation states
+  const lastThree = transactionss?.slice(-3)
+  const [notifications, setNotifications] = useState(
+    initialNotifications || lastThree
+  )
+  interface Transactionss {
+    unique_id: string;
+    transaction_id: string;
+    crypto_value: string;
+    naira_received: string;
+    recipient_account: string;
+    date: string;
+    timestamp: string;
+    status: any; 
+  }
   const [isClearing, setIsClearing] = useState(false)
   const [clearingIndices, setClearingIndices] = useState<number[]>([])
   const [containerClearing, setContainerClearing] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
+  
+  
   const clearAllNotifications = () => {
     if (isClearing) return // Prevent multiple clicks during animation
 
     setIsClearing(true)
 
     // Start clearing notifications one by one from left to right
-    const totalNotifications = notifications.length
+    const totalNotifications = notifications?.length
 
     // Clear notifications one by one with a delay
     for (let i = 0; i < totalNotifications; i++) {
@@ -77,11 +73,6 @@ export default function TransactionNotification({
     ) // Wait for all notifications to clear + a small buffer
   }
 
-  const handleViewTransaction = (id: number) => {
-    console.log(`Viewing transaction ${id}`)
-  }
-
-  // If all notifications are cleared and container animation is done, don't render anything
   if (notifications.length === 0 && !containerClearing && !isClearing) {
     return null
   }
@@ -125,7 +116,7 @@ export default function TransactionNotification({
                   lineHeight: "1",
                 }}
               >
-                {notifications.length}
+                {lastThree.length}
               </span>
             </div>
           </div>
@@ -141,7 +132,7 @@ export default function TransactionNotification({
 
         {/* Stacked notifications */}
         <div className="relative w-full" style={{ height: "120px" }}>
-          {notifications.map((notification, index) => {
+          {lastThree.map((notification, index) => {
             // Use different sizes based on screen size but allow for full width
             const sizes = [
               { width: "95%", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
@@ -153,7 +144,7 @@ export default function TransactionNotification({
 
             return (
               <div
-                key={notification.id}
+                key={notification.unique_id}
                 className={`absolute left-1/2 transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
                 style={{
                   width: sizes[index].width,
@@ -221,7 +212,7 @@ export default function TransactionNotification({
                                 color: "#121212",
                               }}
                             >
-                              {notification.title}
+                             Transaction alert!
                             </span>
                             <span
                               style={{
@@ -232,7 +223,7 @@ export default function TransactionNotification({
                                 color: "#929292",
                               }}
                             >
-                              {notification.time}
+                            at{""} {notification.date}
                             </span>
                           </div>
 
@@ -245,19 +236,28 @@ export default function TransactionNotification({
                               color: "#959595",
                             }}
                           >
-                            {notification.description}
+                         You just received  <span className="bg-gradient-to-r from-[#1F90FF] to-[#504CF6] text-transparent bg-clip-text">{notification.crypto_value}</span>  approx <span className="bg-gradient-to-r from-[#1F90FF] to-[#504CF6] text-transparent bg-clip-text">{notification.naira_received}</span>
                           </span>
                         </div>
                       </div>
 
                       {/* Right side with button */}
+                   
+                      <Dialog.Root>
+                     
+                      <Dialog.Trigger asChild>
                       <SmallSecondaryButton 
                         text="View transaction"
-                        onClick={() => handleViewTransaction(notification.id)} 
-                      />
+                       
+                        />
+                         </Dialog.Trigger> 
+                         <TransanctionHistoryModal notification={notification} />
+                        
+</Dialog.Root>
+
                     </div>
                   </div>
-                </div>
+                </div>        
               </div>
             )
           })}

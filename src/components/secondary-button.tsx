@@ -78,7 +78,7 @@ export const SmallSecondaryButton = ({ text = "View transaction", onClick }: { t
 
   return (
     <div 
-      className="flex flex-col items-start p-px gap-2 w-28 h-6 bg-white shadow-sm rounded-full z-10"
+      className="flex  cursor-pointer flex-col items-start p-px gap-2 w-30 lg:w-28 h-6 bg-white shadow-sm rounded-full z-10"
       style={{
         boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.05)',
       }}

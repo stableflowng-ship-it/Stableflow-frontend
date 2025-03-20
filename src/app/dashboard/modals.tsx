@@ -9,44 +9,63 @@ import green from '../../assests/tick-circle.svg'
 import image5 from "../../assests/import.svg"
 import { BusinessDropdownSelector } from './BusinessDropdwon';
 import export2 from "../../assests/export2.svg"
-
-
+import { motion } from "framer-motion"
+import { StepBack } from 'lucide-react';
+import { ThumbsUp } from 'lucide-react';
+import { useAppDispatch } from '../store/store';
+import { useAppSelector } from '../store/store';
+import { setInputValue } from '../store/inputSlice';
 interface ChildProps {
   closefunction: () => void; // Function type
+  step : Number
+  forward: () => void;
+  back: () => void;
+  progress : number
+  checked : boolean
+  finalize: () => void;
+  close1 : () => void
 }
 
-const Modals: React.FC<ChildProps> = ({ closefunction }) => {
-   const [step, setStep] = useState(1);
 
-    const [checked, setChecked] = useState(false);
-    const [progress, setProgress] = useState(0);
+const Modals: React.FC<ChildProps> = ({ closefunction, step,forward,back,progress,checked,finalize,close1 }) => {
+   
+  
+   
     const [focusedInput, setFocusedInput] = useState<string | null>(null);
     const [paymentMethod, setPaymentMethod] = useState('');
     const [bankName, setBankName] = useState('');
     const [accountType, setAccountType] = useState('');
     
-    function Finalize() {
-      setChecked(true)
-    }
-    useEffect(() => {
-      if (step === 4) {
-        const interval = setInterval(() => {
-          setProgress((prev) => (prev < 5 ? prev + 1 : 5));
-        }, 1500);
-        return () => clearInterval(interval);
-      }
-    }, [step]);
+    const dispatch =  useAppDispatch();
+    const inputValue = useAppSelector((state) => state.input.value);
+    
     const checklist = [
       "Business name added",
       "Configure receiver account",
       "Creating a crypto wallet",
       "You're set up!",
     ];
+    
   return (
      <Dialog.Portal>
-                   <Dialog.Overlay className="fixed px-[0.5rem] inset-0 bg-black/50 z-30" />
-                   <Dialog.Content className="fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-[20px] w-[90%] lg:w-[500px]" style={{ borderRadius: '20px' }}>
-                     {/* Keyframes for gradient animation */}
+                   <Dialog.Overlay >
+                    <motion.div
+                               initial={{ opacity: 0 }}
+                               animate={{ opacity: 1 }}
+                               exit={{ opacity: 0 }}
+                               transition={{ duration: 0.4 }}
+                              className="fixed px-[0.5rem] inset-0 bg-black/50 z-30 backdrop-blur-md"
+                             /> 
+                              </Dialog.Overlay>
+                   <Dialog.Content >
+                   <motion.div
+                   className="fixed left-1/2 top-4/6   transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-[20px] w-[90%] lg:w-[500px]" style={{ borderRadius: '20px' }}
+                   initial={{ y: "100%", opacity: 0 }}
+                   animate={{ y: 0, opacity: 1 }}
+                   exit={{ y: "100%", opacity: 0 }}
+                   transition={{ type: "spring", duration :0.2,stiffness: 400,bounce:0.25,mass:0.5, }}
+                   >
+
                      <style jsx>{`
                        @keyframes gradient {
                          0% {
@@ -69,7 +88,7 @@ const Modals: React.FC<ChildProps> = ({ closefunction }) => {
                              height={30}
                              alt='close'
                              className='cursor-pointer'
-                             onClick={closefunction}
+                             onClick={close1}
                            />
                          </div>
                          <div className='grid'>
@@ -101,6 +120,7 @@ const Modals: React.FC<ChildProps> = ({ closefunction }) => {
                                    placeholder="Enter business name"
                                    onFocus={() => setFocusedInput('businessName')}
                                    onBlur={() => setFocusedInput(null)}
+                                   onChange={(e) => dispatch(setInputValue(e.target.value))}
                                    className={`
                                      w-full h-5 text-sm font-medium tracking-wide bg-transparent 
                                      border-none outline-none focus:ring-0
@@ -159,7 +179,7 @@ const Modals: React.FC<ChildProps> = ({ closefunction }) => {
                              width="100%"
                            />
                          </div>
-                         <PrimaryButton shortcut="" onClick={() => setStep(2)} className="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-[10px] border-0">
+                         <PrimaryButton shortcut="" onClick={forward} className="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-[10px] border-0">
                            Continue
                          </PrimaryButton>
                        </div>
@@ -167,16 +187,24 @@ const Modals: React.FC<ChildProps> = ({ closefunction }) => {
    
                      {/* Step 2 */}
                      {step === 2 && (
-                       <div className='grid gap-[16px]'>
+                       <motion.div className='grid gap-[16px]'
+                   initial={{ x: "-100%", opacity: 0 }}
+                   animate={{ x: 0, opacity: 1 }}
+                   exit={{ y: "100%", opacity: 0 }}
+                   transition={{ type: "spring", duration :0.2,stiffness: 400,bounce:0.25,mass:0.5, }}
+                       >
                          <div className='flex flex-row items-center justify-between'>
+                         <div className='flex flex-row items-center justify-center gap-[0.5rem]'>
+                         <StepBack className='lg:text-[20px] text-[15px] font-[600] cursor-pointer' onClick={back} />
                            <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">Set up receiver account</Dialog.Title>
+                           </div>
                            <Image 
                              src={close}
                              width={30}
                              height={30}
                              alt='close'
                              className='cursor-pointer'
-                             onClick={closefunction}
+                             onClick={close1}
                            />
                          </div>
                          <div className='grid'>
@@ -238,30 +266,38 @@ const Modals: React.FC<ChildProps> = ({ closefunction }) => {
                              width="100%"
                            />
                          </div>
-                         <PrimaryButton shortcut="" onClick={() => setStep(3)} className="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-[10px] border-0">
+                         <PrimaryButton shortcut="" onClick={forward} className="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-[10px] border-0">
                            Start accepting
                          </PrimaryButton>
-                       </div>
+                       </motion.div>
                      )}
    
                      {/* Step 3 */}
                      {step === 3 && (
-                       <div className='grid gap-[16px]'>
-                         <div className='flex flex-row items-center justify-between'>
-                           <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">Set up receiver account</Dialog.Title>
+                       <motion.div className='grid gap-[16px]'
+                       initial={{ x: "100%", opacity: 0 }}
+                       animate={{ x: 0, opacity: 1 }}
+                       exit={{ y: "100%", opacity: 0 }}
+                       transition={{ type: "spring", duration :0.2,stiffness: 400,bounce:0.25,mass:0.5, }}
+                           >
+                             <div className='flex flex-row items-center justify-between'>
+                             <div className='flex flex-row items-center justify-center gap-[0.5rem]'>
+                             <StepBack className='lg:text-[20px] text-[15px] font-[600] cursor-pointer' onClick={back} />
+                               <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">Set up receiver account</Dialog.Title>
+                               </div>
                            <Image 
                              src={close}
                              width={30}
                              height={30}
                              alt='close'
                              className='cursor-pointer'
-                             onClick={closefunction}
+                             onClick={close1}
                            />
                          </div>
                          <div className="flex justify-between p-[1rem] items-center border-[2px] cursor-pointer rounded-2xl border-[#E2E2E2]">
                            <h3 className='text-black font-[600] text-[16px]'>Read our terms of service</h3>
                            <button 
-                             onClick={Finalize}
+                             onClick={finalize}
                              className="flex items-center gap-1 px-2 py-1 text-sm font-medium text-[#8D8D8D] bg-white rounded-full shadow-sm hover:bg-gray-50"
                            >
                              <span>Read</span>
@@ -275,19 +311,29 @@ const Modals: React.FC<ChildProps> = ({ closefunction }) => {
                          </div>
                          <div className="w-full">
                            {checked == true ?
-                             <PrimaryButton shortcut="" onClick={() => setStep(4)} className="mt-4 cursor-pointer px-4 py-2 w-full text-white rounded-[10px] border-0">
+                             <PrimaryButton shortcut="" onClick={forward} className="mt-4 cursor-pointer px-4 py-2 w-full text-white rounded-[10px] border-0">
                                I consent
                              </PrimaryButton>
                            : <button className='bg-[#D3D3D3] w-full rounded-[10px] border-0 text-white p-[0.5rem] cursor-not-allowed'>I consent</button>}
                          </div>
-                       </div>
+                       </motion.div>
                      )}
                      
                      {/* Step 4 */}
                      {step === 4 && (
                        <div className='grid gap-[16px]'>
                          <div className='flex flex-row items-center justify-between'>
-                           <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">Set up receiver account</Dialog.Title>
+                           <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">
+                            {progress > 4 ?
+                          <div className='flex items-center justify-center gap-[0.3rem]'>
+                          <div>You are ready</div> 
+                          <ThumbsUp className='lg:text-[18px] text-[15px] font-[600] cursor-pointer' />
+                          </div>
+                           :
+                           
+                             <div>Setting up your account </div> 
+}
+                            </Dialog.Title>
                            <Image 
                              src={close}
                              width={30}
@@ -324,6 +370,7 @@ const Modals: React.FC<ChildProps> = ({ closefunction }) => {
                          : ""}
                        </div>
                      )}
+                     </motion.div>
                    </Dialog.Content>
                  </Dialog.Portal>
   )
