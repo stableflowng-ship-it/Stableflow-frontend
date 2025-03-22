@@ -14,21 +14,9 @@ import Modals from './modals'
 import Dropdown from './dropDown'
 import { useAppSelector, useAppDispatch } from '../store/store'
 import { resetInputValue } from '../store/inputSlice'
-import Head from "next/head";
 
-// Structured data for Dashboard page
-const dashboardJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Flow Payments Dashboard',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD'
-  },
-};
+
+
 
 export default function Page() {
   const dispatch = useAppDispatch()
@@ -85,7 +73,6 @@ export default function Page() {
   return (
     <>
     
-      
       <div 
         className='w-screen grid items-center overflow-hidden lg:gap-[2rem] gap-[2rem] justify-center bg-[#f7f7f7] min-h-screen'
         role="main"
@@ -112,7 +99,7 @@ export default function Page() {
             <div className='flex items-center justify-between w-full py-[0.7rem] px-[1rem] bg-transparent'>
                 <div className='grid decoration-0 cursor-pointer' onClick={openModal}>
                   <h3 className='text-[16px] flex text-[#828282] font-[500]'>Hola👋,</h3>
-                  {inputValue ?
+                  {inputValue.length ?
                   <h3 className='text-[25px] text-[#121212] underline underline-offset-1 flex items-start font-[500]'>{inputValue}</h3>
                   :
                   <h3 className='text-[16px] text-[#121212] underline underline-offset-1 flex items-start font-[500]'>Enter your business name</h3>

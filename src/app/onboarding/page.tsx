@@ -112,7 +112,7 @@ export default function AuthPage() {
   
     setVerificationState('verifying');
   
-    // Simulate verification delay
+    
     setTimeout(() => {
       const enteredCode = otpValues.join('');
   
