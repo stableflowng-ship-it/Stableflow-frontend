@@ -70,14 +70,12 @@ export default function Page() {
     setOpen(true)
   }
 
+  
   return (
     <>
     
       <div 
-        className='w-screen grid items-center overflow-hidden lg:gap-[2rem] gap-[2rem] justify-center bg-[#f7f7f7] min-h-screen'
-        role="main"
-        aria-label="Dashboard"
-      >
+        className='w-screen grid items-center overflow-hidden lg:gap-[2rem] gap-[2rem] justify-center bg-[#f7f7f7] min-h-screen'  >
         <div className="flex justify-between w-screen lg:w-[100%] lg:mt-[4rem] mt-[1rem] px-[0.7rem] lg:px-0 items-center">
           <Image 
             src={logo}
@@ -85,8 +83,6 @@ export default function Page() {
             width={180}
             height={40}
             className="lg:w-[180px] lg:h-[40px] w-[100px] h-[22px]"
-            priority
-            loading="eager"
             sizes="(max-width: 640px) 100px, 180px"
           />
           <div className="flex flex-row gap-[1rem]">
@@ -120,16 +116,16 @@ export default function Page() {
               </TertiaryButton>
   : ''}
             </div>
-            <VolumeWidget openDialog={() => setOpen(true)} />
+            <VolumeWidget openDialog={openModal} />
             </Dialog.Root>
           </div>
 
-          <div className="w-full flex flex-col gap-[8px]" aria-label="Transaction information">
+          <div className="w-full flex flex-col gap-[8px]">
             <TransactionNotification />
             <TransactionHistoryContainer />
           </div>
         </div>
-        <div className="flex flex-row justify-between items-center w-full py-6 px-[1rem] lg:px-0" role="contentinfo">
+        <div className="flex flex-row justify-between items-center w-full py-6 px-[1rem] lg:px-0" >
           <div className="text-[#8F8F8F] text-sm font-medium flex items-center">
             Built with ❤️ et ☕
           </div>
