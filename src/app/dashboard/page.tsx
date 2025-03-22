@@ -14,16 +14,9 @@ import twit from '../../assests/x-logo.png'
 import git from '../../assests/warpcast-logo.svg'
 import Modals from './modals'
 import Dropdown from './dropDown'
-import { useAppSelector } from '../store/store'
-import { resetInputValue } from '../store/inputSlice'
-import { useAppDispatch } from '../store/store'
 
 export default function Page() {
-  const dispatch = useAppDispatch()
-  const inputValue = useAppSelector((state) => state.input.value);
-  const handleReset = () => {
-    dispatch(resetInputValue()); // Calls the Redux reset action
-  };
+  
 
 
 
@@ -44,7 +37,7 @@ export default function Page() {
     setStep(1)
     setProgress(0)
     setChecked(false)
-    handleReset()
+  
   }
   function forward() {
     setStep(step +1 )
@@ -86,30 +79,7 @@ export default function Page() {
       <div className="flex flex-col  overflow-hidden items-start justify-center gap-[24px] h-full bg-[#f7f7f7] ">
         <div className='flex flex-col w-screen lg:w-full border-[#EFEFEF] rounded-t-[20px] bg-[#EFEFEF]'>
         <Dialog.Root open={open} onOpenChange={closee}>
-          <div className='flex items-center justify-between w-full py-[0.7rem] px-[1rem] bg-transparent'>
-              <div className='grid decoration-0 cursor-pointer' onClick={openModal}>
-                <h3 className='text-[16px] flex text-[#828282] font-[500]'>Hola👋,</h3>
-                {inputValue ?
-                <h3 className='text-[25px] text-[#121212] underline underline-offset-1 flex items-start font-[500]'>{inputValue}</h3>
-                :
-                <h3 className='text-[16px] text-[#121212] underline underline-offset-1 flex items-start font-[500]'>Enter your business name</h3>
-                }
-                </div>
-              <Modals closefunction={closee} close1={close1}  step={step} forward={forward} back={back} checked={checked} progress={progress} finalize={Finalize}/>
-            { inputValue ?
-            <TertiaryButton className="cursor-pointer ml-auto">
-              <div className="flex items-center gap-2">
-                <Image
-                  src={edit}
-                  alt='edit'
-                  height={20}
-                  width={20}
-                />
-                <span>Edit name</span>
-              </div>
-            </TertiaryButton>
-: ''}
-          </div>
+          
           <VolumeWidget openDialog={() => setOpen(true)} />
           </Dialog.Root>
         </div>
