@@ -6,7 +6,7 @@ import logo from '../../assests/image1.png';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TertiaryButton } from '@/components/tertiary-button';
-
+import Router from 'next/router';
 // Utility function to combine classNames
 const cn = (...classes: string[]) => {
   return classes.filter(Boolean).join(' ');
@@ -108,24 +108,27 @@ export default function AuthPage() {
 
   // Verify OTP
   const verifyOTP = () => {
-    // Check if all fields are filled
-    if (otpValues.every((val) => val !== "")) {
-      setVerificationState("verifying");
-
-      // Simulate verification process
-      setTimeout(() => {
-        // For demo - alternate between success and error
-        if (otpValues.join("") === "2222") {
-          // Redirect to dashboard on success
-          router.push('/dashboard');
-        } else {
-          setVerificationState("error");
-          setShake(true);
-          setTimeout(() => setShake(false), 500);
-        }
-      }, 1500);
-    }
+    // Don't proceed if any field is empty
+    if (!otpValues.every((val) => val !== '')) return;
+  
+    setVerificationState('verifying');
+  
+    // Simulate verification delay
+    setTimeout(() => {
+      const enteredCode = otpValues.join('');
+  
+      if (enteredCode === '2222') {
+        router.push('/dashboard'); // ✅ Redirect on success
+      } else {
+        setVerificationState('error');
+        setShake(true);
+  
+        // Stop shaking after 500ms
+        setTimeout(() => setShake(false), 500);
+      }
+    }, 1500);
   };
+  
 
   // Handle resend
   const handleResend = () => {
@@ -496,6 +499,7 @@ export default function AuthPage() {
                 
                 {/* Primary Button (Verify) */}
                 <button
+
                   onClick={verificationState === "verifying" ? () => {} : verifyOTP}
                   className={cn(
                     "relative inline-flex items-center justify-center whitespace-nowrap",
