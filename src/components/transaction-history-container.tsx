@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import { TertiaryButton } from './tertiary-button';
 import Image from 'next/image';
