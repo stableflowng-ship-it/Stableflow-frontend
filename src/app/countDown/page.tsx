@@ -133,7 +133,9 @@ export default function Home() {
           <div className="z-20 flex flex-row gap-[16px] w-full items-center justify-between px-[0.5rem]">
             <p className="text-[16px] font-[500] text-[#909090]">Countdown till launch</p>
             <p className="text-[20px] font-[900] bg-gradient-to-r from-[#4FA6FF] to-[#555AF7] bg-clip-text text-transparent">
-              {`${countdown.hours}h ${countdown.minutes}m ${countdown.seconds}s`}
+              {countdown.hours}
+              {countdown.minutes}
+              {countdown.seconds}
             </p>
           </div>
         </div>
