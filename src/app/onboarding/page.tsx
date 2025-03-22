@@ -1,12 +1,11 @@
 'use client';
-
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import logo from '../../assests/image1.png';
+import logo from '../../assests/loggo.svg';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TertiaryButton } from '@/components/tertiary-button';
-import Router from 'next/router';
+import { TertiaryButton } from '../../components/tertiary-button';
+
 // Utility function to combine classNames
 const cn = (...classes: string[]) => {
   return classes.filter(Boolean).join(' ');
