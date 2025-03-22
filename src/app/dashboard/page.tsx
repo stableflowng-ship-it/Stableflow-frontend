@@ -99,7 +99,7 @@ export default function Page() {
             <div className='flex items-center justify-between w-full py-[0.7rem] px-[1rem] bg-transparent'>
                 <div className='grid decoration-0 cursor-pointer' onClick={openModal}>
                   <h3 className='text-[16px] flex text-[#828282] font-[500]'>Hola👋,</h3>
-                  {inputValue.length ?
+                  {inputValue ?
                   <h3 className='text-[25px] text-[#121212] underline underline-offset-1 flex items-start font-[500]'>{inputValue}</h3>
                   :
                   <h3 className='text-[16px] text-[#121212] underline underline-offset-1 flex items-start font-[500]'>Enter your business name</h3>
@@ -129,7 +129,7 @@ export default function Page() {
             <TransactionHistoryContainer />
           </div>
         </div>
-        <footer className="flex flex-row justify-between items-center w-full py-6 px-[1rem] lg:px-0" role="contentinfo">
+        <div className="flex flex-row justify-between items-center w-full py-6 px-[1rem] lg:px-0" role="contentinfo">
           <div className="text-[#8F8F8F] text-sm font-medium flex items-center">
             Built with ❤️ et ☕
           </div>
@@ -148,7 +148,7 @@ export default function Page() {
               <span className="text-[#8F8F8F] text-sm font-medium">Warpcast</span>
             </div>
           </div>
-        </footer>
+        </div>
       </div>
     </>
   );
