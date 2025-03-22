@@ -78,8 +78,7 @@ const PrimaryButton = React.forwardRef<HTMLButtonElement, PrimaryButtonProps>(
               padding: '2px 4px',
               borderRadius: '4px',
               margin: '0 0 0 8px',
-            }}
-          >
+            }}>
             {shortcut}
           </span>
         )}
