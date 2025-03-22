@@ -26,7 +26,7 @@ export default function ComponentsDemo() {
   const emptyTransactions: Transaction[] = [];
 
   return (
-    <div className="min-h-screen bg-[#f7f7f7] pt-6 pb-12 px-8">
+    <div className="min-h-screen  bg-[#f7f7f7] pt-6 pb-12 px-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-2xl font-bold mb-8">Components Demo</h1>
         
