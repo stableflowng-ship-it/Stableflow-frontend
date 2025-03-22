@@ -17,11 +17,10 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
   const [isMounted, setIsMounted] = useState(false)
   const targetValue = 300
   
-  // This ensures consistent rendering between server and client
+
   useEffect(() => {
     setIsMounted(true);
     
-    // Delay animation start to prevent hydration issues
     const timer = setTimeout(() => {
       setCurrentValue(targetValue);
     }, 500);
@@ -31,7 +30,7 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
 
   return (
     <div className="relative lg:w-[573px]  bg-[#FFFFFF]  rounded-[20px] grid lg:items-start lg:justify-normal md:items-start md:justify-normal items-center justify-center w-screen pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
-      <div className="absolute inset-0 dotted-background"></div>
+      <div className="absolute inset-0 " style={{ backgroundImage: "url('/image3.svg')", backgroundPosition: "center" }}></div>
       <div className="relative z-10 px-[24px] py-[16px] lg:pl-[1rem] pl-[2.3rem] ">
         {/* Total volume section with eye icon */}
         <div className="flex items-center">
@@ -98,18 +97,10 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
           </SecondaryButton>
         </div>
 
-        {/* Supercharge text with 6px spacing */}
         <div className="mt-[6px]">
           <p className="text-[14px] text-[#B0B0B0]">Supercharge your business with our payment kit</p>
         </div>
       </div>
-
-      <style jsx>{`
-        .dotted-background {
-          background-image: radial-gradient(#E0E0E0 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-      `}</style>
     </div>
   )
 } 
