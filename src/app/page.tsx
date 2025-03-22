@@ -83,8 +83,8 @@ export default function Home() {
             Unlock crypto liquidity for your business effortlessly and receive<br></br> cash instantly. No waiting time. No reconciliation.
           </h4>
         </div>
-        <div className="flex flex-col gap-[16px] w-full items-center justify-center lg:items-left lg:justify-left">
-          <div className="flex flex-row items-center gap-[12px]">
+        <div className="flex flex-col gap-[16px] w-full items-center  justify-center lg:items-left lg:justify-left">
+          <div className="flex flex-row items-center gap-[5px] px-[1.5rem]">
             <PrimaryButton className="cursor-pointer" onClick={handleClick}>
               <h3 className="text-[#FFFFFF] font-[600] mr-[0.5rem] text-[16px]">Start accepting</h3>
             </PrimaryButton>
