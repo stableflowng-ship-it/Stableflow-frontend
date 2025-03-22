@@ -6,7 +6,7 @@ export interface TertiaryButtonProps
   label?: string;
 }
 
-const TertiaryButton = React.forwardRef<HTMLButtonElement, TertiaryButtonProps>(
+const TertiaryButton = React.memo(React.forwardRef<HTMLButtonElement, TertiaryButtonProps>(
   ({ className, children, label = "Button Text", ...props }, ref) => {
     return (
       <button
@@ -43,7 +43,7 @@ const TertiaryButton = React.forwardRef<HTMLButtonElement, TertiaryButtonProps>(
       </button>
     );
   }
-);
+));
 
 TertiaryButton.displayName = "TertiaryButton";
 

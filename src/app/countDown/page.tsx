@@ -102,7 +102,7 @@ export default function Home() {
          </div>
          <div className="flex flex-col pl-[1rem]  lg:items-baseline gap-[0.5rem] z-20">
            <h2 className="lg:text-[37px] text-[25px] font-[600] text-white">
-             Crypto <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent ">accepted.</span> Cash delivered.<span className="text-[#909090]"> <br></br> Everyone </span> <span className="text-[#FFB767]">{';)'}</span> <span className="text-[#909090]">smiles.</span>
+             Crypto <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent glow-text ">accepted.</span> Cash delivered.<span className="text-[#909090]"> <br></br> Everyone </span> <span className="text-[#FFB767]">{';)'}</span> <span className="text-[#909090]">smiles.</span>
            </h2>
            <h4 className="font-[400]  lg:px-0 px-[0.5rem] lg:text-start text-[15px] lg:text-[18px] text-white">
              Unlock crypto liquidity for your business effortlessly and receive<br></br> cash instantly. No waiting time. No reconciliation.

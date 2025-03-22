@@ -1,0 +1,11 @@
+# Allow all crawlers to index public pages
+User-agent: *
+Allow: /
+Allow: /onboarding
+Disallow: /dashboard/
+Disallow: /app/dashboard/
+Disallow: /components-demo/
+Disallow: /app/modals/
+
+# Sitemap location
+Sitemap: https://flow.com/sitemap.xml 
