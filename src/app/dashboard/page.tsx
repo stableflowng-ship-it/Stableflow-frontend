@@ -84,22 +84,7 @@ export default function Page() {
 
   return (
     <>
-      <Head>
-        <title>Dashboard | Flow Payments</title>
-        <meta name="description" content="Monitor your crypto transactions, track payment volume, and manage your business settings all in one place." />
-        <meta name="robots" content="noindex, nofollow" />
-        {/* Secure dashboard - add additional security headers */}
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'" />
-        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="X-Frame-Options" content="DENY" />
-        <meta name="referrer" content="strict-origin-when-cross-origin" />
-        
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(dashboardJsonLd) }}
-        />
-      </Head>
+    
       
       <div 
         className='w-screen grid items-center overflow-hidden lg:gap-[2rem] gap-[2rem] justify-center bg-[#f7f7f7] min-h-screen'
