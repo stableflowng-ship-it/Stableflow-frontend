@@ -110,12 +110,13 @@ export default function Page() {
             </TertiaryButton>
 : ''}
           </div>
-          <VolumeWidget openDialog={openModal} />
+         
           </Dialog.Root>
         </div>
 
         <div className="w-full flex flex-col gap-[8px]">
-         
+          <TransactionNotification />
+          <TransactionHistoryContainer />
         </div>
       </div>
       <div className="flex flex-row justify-between items-center w-full py-6 px-[1rem] lg:px-0">
