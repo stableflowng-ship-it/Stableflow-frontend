@@ -78,7 +78,7 @@ export default function TransactionNotification({
   }
 
   return (
-    <div className="w-full flex flex-col items-center justify-center">
+    <div className="w-full">
       <div
         className={`flex flex-col w-full items-start p-0 gap-4 ${containerClearing ? "animate-container-clear" : ""}`}
       >
@@ -124,27 +124,31 @@ export default function TransactionNotification({
             label="Clear all"
             onClick={clearAllNotifications}
             disabled={isClearing || notifications.length === 0}
-            className="cursor-pointer lg:mr-0"
+            className="cursor-pointer mr-[1rem] lg:mr-0"
           >
             Clear all
           </TertiaryButton>
         </div>
 
         {/* Stacked notifications */}
-        <div className="relative grid  w-screen" style={{ height: "120px" }}>
+        <div className="relative w-full" style={{ height: "120px" }}>
           {lastThree.map((notification, index) => {
             // Use different sizes based on screen size but allow for full width
-           
+            const sizes = [
+              { width: "95%", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
+              { width: "90%", height: "64px", padding: "11.5539px", gap: "5.78px" },
+              { width: "80%", height: "64px", padding: "9.5085px", gap: "4.75px" },
+            ]
 
             const isClearing = clearingIndices.includes(index)
 
             return (
               <div
                 key={notification.unique_id}
-                className={`absolute left-1/2 flex items-center justify-center transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
+                className={`absolute left-1/2 transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
                 style={{
-                  width: 'max-content',
-                  height: 'fit-content',
+                  width: sizes[index].width,
+                  height: sizes[index].height,
                   top: index * -45, // -45px vertical spacing
                   zIndex: 3 - index,
                   position: "relative",
@@ -170,8 +174,8 @@ export default function TransactionNotification({
                       background:
                         "linear-gradient(180deg, rgba(233, 233, 233, 0.24) 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF",
                       margin: "1px", // This creates space for the border
-                      padding: '0px',
-                      gap: '0px',
+                      padding: sizes[index].padding,
+                      gap: sizes[index].gap,
                       borderRadius: "14px", // Slightly smaller than parent to show border
                       // Apply 100% corner radius smoothing
                       borderTopLeftRadius: "14px 14px",
