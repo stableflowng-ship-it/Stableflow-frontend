@@ -131,14 +131,10 @@ export default function TransactionNotification({
         </div>
 
         {/* Stacked notifications */}
-        <div className="relative grid  w-[98%]" style={{ height: "120px" }}>
+        <div className="relative grid  w-screen" style={{ height: "120px" }}>
           {lastThree.map((notification, index) => {
             // Use different sizes based on screen size but allow for full width
-            const sizes = [
-              { width: "400px", height: "61px", padding: "", gap: "" },
-              { width: "350px", height: "64px", padding: "", gap: "" },
-              { width: "300", height: "64px", padding: "", gap: "" },
-            ]
+           
 
             const isClearing = clearingIndices.includes(index)
 
@@ -147,8 +143,8 @@ export default function TransactionNotification({
                 key={notification.unique_id}
                 className={`absolute left-1/2 flex items-center justify-center transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
                 style={{
-                  width: sizes[index].width,
-                  height: sizes[index].height,
+                  width: 'max-content',
+                  height: 'fit-content',
                   top: index * -45, // -45px vertical spacing
                   zIndex: 3 - index,
                   position: "relative",
