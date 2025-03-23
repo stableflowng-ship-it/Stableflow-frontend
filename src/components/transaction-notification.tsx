@@ -170,8 +170,8 @@ export default function TransactionNotification({
                       background:
                         "linear-gradient(180deg, rgba(233, 233, 233, 0.24) 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF",
                       margin: "1px", // This creates space for the border
-                      padding: sizes[index].padding,
-                      gap: sizes[index].gap,
+                      padding: '0px',
+                      gap: '0px',
                       borderRadius: "14px", // Slightly smaller than parent to show border
                       // Apply 100% corner radius smoothing
                       borderTopLeftRadius: "14px 14px",
