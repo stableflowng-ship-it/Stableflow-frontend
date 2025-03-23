@@ -12,11 +12,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-export const metadata: Metadata = {
-  title: "Your App Title",
-  description: "Your app description for SEO",
-  viewport: "width=device-width, initial-scale=1.0", // 👈 This makes it mobile responsive
-};
+<meta name='viewport' content='width=device-width, initial-scale=1.0'></meta>;
 
 
 export default function RootLayout({
