@@ -21,12 +21,12 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
  
 
   return (
-    <div className="relative lg:w-[573px]  bg-[#FFFFFF]  rounded-[20px] grid lg:items-start lg:justify-normal md:items-start md:justify-normal items-center justify-center w-screen pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+    <div className="relative lg:w-[573px] m-auto  bg-[#FFFFFF]  rounded-[20px] grid lg:items-start lg:justify-normal md:items-start md:justify-normal items-center justify-center w-fit pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
       <div className="absolute inset-0 dotted-background"></div>
-      <div className="relative z-10 px-[24px] py-[16px] lg:pl-[1rem] pl-[2.3rem] ">
+      <div className="relative  z-10 px-[1rem] py-[16px] lg:pl-[1rem]  ">
         {/* Total volume section with eye icon */}
         <div className="flex items-center">
-          <span className="text-[#B0B0B0] text-[16px] font-medium pl-[0.5rem] lg:pl-0">Total volume</span>
+          <span className="text-[#B0B0B0] text-[16px] font-medium  lg:pl-0">Total volume</span>
           <button onClick={() => setIsHidden(!isHidden)} className="ml-2 p-1 rounded-full cursor-pointer hover:bg-gray-100">
             {isHidden ? (
               <EyeOff size={16} className="text-[#B0B0B0]" />
@@ -37,8 +37,8 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
         </div>
 
         {/* Volume value and Switch to NGN in column layout */}
-        <div className="flex flex-col pl-[0.5rem] lg:pl-0">
-          <span className="text-[32px] text-[#121212] font-bold">
+        <div className="flex flex-col gap-[0.5rem]  lg:pl-0">
+          <span className="lg:text-[32px] text-[20px] text-[#121212] font-bold">
             {isHidden ? "⊛⊛⊛⊛⊛⊛" : (
               isMounted ? (
                 <NumberFlow 
@@ -67,24 +67,24 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
         </div>
 
         {/* Buttons with 52px spacing from top */}
-        <div className="mt-[52px] flex gap-[5px] lg:gap-[12px]">
-          <PrimaryButton className="cursor-pointer" shortcut="" onClick={openDialog}>
-            <div className="flex items-center">
+        <div className="lg:mt-[45px] mt-[35px]  flex gap-[5px]  items-center  lg:justify-items-start lg:items-start  lg:gap-[12px] ">
+          <PrimaryButton className="cursor-pointer flex  lg:m-0 items-center justify-center m-auto" shortcut="" onClick={openDialog}>
+            <div className="flex items-center w-fit">
               <Zap className="mr-2 h-4 w-4" />
-              <span>Start accepting crypto</span>
+              <span className="text-[12px] lg:text-[16px] ">Start accepting crypto</span>
             </div>
           </PrimaryButton>
 
-          <SecondaryButton className="cursor-pointer min-w-max">
-            <div className="flex flex-row items-center whitespace-nowrap gap-[0.2rem]">
+          <SecondaryButton className="cursor-pointer w-full">
+            <div className="flex flex-row items-center whitespace-nowrap gap-[0.1rem] ">
               <Image
                 src={share}
-                width={20}
-                height={20}
+                width={15}
+                height={15}
                 alt="share"
-                className="w-[20px] h-[20px]"
+                className="w-[15px] h-[15px]"
               />
-              <span>Apply for payments kit</span>
+              <span className="text-[12px] lg:text-[16px] ">Apply for payments kit</span>
             </div>
           </SecondaryButton>
         </div>

@@ -14,7 +14,7 @@ const SecondaryButton = React.forwardRef<HTMLButtonElement, SecondaryButtonProps
 
     return (
       <div 
-        className="flex flex-col items-start p-0.5  w-56 h-11 bg-white shadow-sm rounded-xl transition-all duration-200"
+        className="flex flex-col items-start p-0.5  w-40 lg:w-56 h-11 bg-white shadow-sm rounded-xl transition-all duration-200"
         style={{
           boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.05)',
         }}

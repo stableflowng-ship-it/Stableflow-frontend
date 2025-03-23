@@ -117,12 +117,12 @@ alt='usd logo'
                 /</Dialog.Overlay>
                 <Dialog.Content >
                   <motion.div
-                  className="z-30 fixed  top-3/5 lg:top-3/6 mt-[2rem] left-1/2 flex flex-col gap-[2rem] transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-2xl shadow-lg w-[95%] lg:w-120"
+                  className="z-30 fixed  top-1/2 lg:top-3/6 mt-[1rem] left-1/2 flex flex-col gap-[1rem] lg:gap-[2rem] transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-2xl shadow-lg "
                   style={{ backgroundImage: "url('/image3.svg')", backgroundPosition: "center" }}
                   initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "100%", opacity: 0 }}
-                transition={{ type: "spring", duration :0.2,stiffness: 400,bounce:0.25,mass:0.5, }}>
+                transition={{ type: "tween", duration :0.2 }}>
                   <Dialog.Title className="text-xl font-bold flex items-center justify-center">
                   <Image 
                   src={logo}

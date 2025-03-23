@@ -101,9 +101,9 @@ const Modals: React.FC<ChildProps> = ({
           className="fixed px-[0.5rem] inset-0 bg-black/50 z-30 backdrop-blur-md"
         /> 
       </Dialog.Overlay>
-      <Dialog.Content aria-labelledby="modal-title">
+      <Dialog.Content>
         <motion.div
-          className="fixed left-1/2 top-4/6 transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-[20px] w-[90%] lg:w-[500px]" 
+          className="fixed left-1/2 top-1/2 lg:top-4/6 transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-[20px] w-[80%] lg:w-[500px]" 
           style={{ borderRadius: '20px' }}
           variants={modalVariants}
           initial="hidden"
@@ -145,8 +145,8 @@ const Modals: React.FC<ChildProps> = ({
                   initial="hidden"
                   animate="visible"
                 >
-                  <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]" id="modal-title">
-                    <motion.span layoutId="modal-title">Set up your business entity</motion.span>
+                  <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]" >
+                  Set up your business entity
                   </Dialog.Title>
                   <Image 
                     src={close}
@@ -184,8 +184,7 @@ const Modals: React.FC<ChildProps> = ({
                         <input
                           type="text"
                           placeholder="Enter business name"
-                          onFocus={() => handleFocus('businessName')}
-                          onBlur={handleBlur}
+                        
                           onChange={handleInputChange}
                           className={`
                             w-full h-5 text-sm font-medium tracking-wide bg-transparent 
@@ -226,7 +225,7 @@ const Modals: React.FC<ChildProps> = ({
                         <input
                           type="text"
                           placeholder="Enter business phone number"
-                          onFocus={() => handleFocus('businessContact')}
+                      
                           onBlur={handleBlur}
                           className={`
                             w-full h-5 text-sm font-medium tracking-wide bg-transparent 
@@ -454,7 +453,7 @@ const Modals: React.FC<ChildProps> = ({
             
             {step === 4 && (
               <motion.div 
-                className='grid gap-[16px]'
+                className='grid gap-[1rem]'
                 variants={modalVariants}
                 initial="hidden"
                 animate="visible"
@@ -471,7 +470,7 @@ const Modals: React.FC<ChildProps> = ({
                   initial="hidden"
                   animate="visible"
                 >
-                  <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]" id="modal-title">
+                  <Dialog.Title className="lg:text-[24px] text-[18px] font-[600]">
                     <motion.span layoutId="modal-title">
                       {progress > 4 ? (
                         <div className='flex items-center justify-center gap-[0.3rem]'>
@@ -497,14 +496,15 @@ const Modals: React.FC<ChildProps> = ({
                   variants={staggerChildren}
                   initial="hidden"
                   animate="visible"
+                  className='grid gap-[1rem]'
                 >
                   {checklist.map((item, index) => (
                     <motion.div 
                       key={index} 
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-[1rem]"
                       variants={fadeInVariants}
-                      aria-live={progress === index ? "polite" : "off"}
                     >
+
                       <Image
                         src={progress > index ? green : yellow}
                         width={20}
@@ -515,6 +515,7 @@ const Modals: React.FC<ChildProps> = ({
                       <p className={`text-[16px] ${progress > index ? "text-green-600 font-medium" : "text-gray-500"}`}>
                         {item}
                       </p>
+                     
                     </motion.div>
                   ))}
                 </motion.div>

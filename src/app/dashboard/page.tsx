@@ -70,7 +70,7 @@ export default function Page() {
       }
   return (
     <div className='w-screen grid items-center overflow-hidden lg:gap-[2rem] gap-[2rem] justify-center bg-[#f7f7f7] h-full'>
-      <div className="flex justify-between w-screen lg:w-[100%] lg:mt-[4rem] mt-[1rem] px-[0.7rem] lg:px-0 items-center">
+      <div className="flex justify-between w-screen lg:w-[100%] lg:mt-[4rem] mt-[2.5rem] px-[1.5rem] lg:border-b-0 border-b-[2px] pb-[0.5rem] lg:pb-0 border-[#F1F1F1] lg:px-0 items-center">
         <Image 
           src={logo}
           alt="logo"
@@ -83,8 +83,8 @@ export default function Page() {
           />
         </div>
       </div>
-      <div className="flex flex-col  overflow-hidden items-start justify-center gap-[24px] h-full bg-[#f7f7f7] ">
-        <div className='flex flex-col w-screen lg:w-full border-[#EFEFEF] rounded-t-[20px] bg-[#EFEFEF]'>
+      <div className="flex flex-col  overflow-hidden lg:items-start items-center  justify-center gap-[24px] h-full bg-[#f7f7f7] ">
+        <div className='flex flex-col items-center justify-center m-auto lg:w-full border-[#EFEFEF] rounded-t-[20px] bg-[#EFEFEF]'>
         <Dialog.Root open={open} onOpenChange={closee}>
           <div className='flex items-center justify-between w-full py-[0.7rem] px-[1rem] bg-transparent'>
               <div className='grid decoration-0 cursor-pointer' onClick={openModal}>
