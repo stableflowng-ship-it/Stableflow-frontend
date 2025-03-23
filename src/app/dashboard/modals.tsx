@@ -91,14 +91,16 @@ const Modals: React.FC<ChildProps> = ({
 
   return (
     <Dialog.Portal>
-      <Dialog.Overlay>
+      <Dialog.Overlay
+       className="fixed px-[0.5rem] inset-0 bg-black/50 z-30 backdrop-blur-md"
+      >
         <motion.div
           variants={overlayVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
           transition={{ duration: 0.4 }}
-          className="fixed px-[0.5rem] inset-0 bg-black/50 z-30 backdrop-blur-md"
+         
         /> 
       </Dialog.Overlay>
       <Dialog.Content>
