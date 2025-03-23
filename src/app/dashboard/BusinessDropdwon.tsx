@@ -10,6 +10,7 @@ interface BusinessDropdownSelectorProps {
 }
 
 export const BusinessDropdownSelector: React.FC<BusinessDropdownSelectorProps> = ({
+  
   placeholder = "Select an option",
   options = [],
   value,

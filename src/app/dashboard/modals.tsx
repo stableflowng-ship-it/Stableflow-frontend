@@ -92,26 +92,23 @@ const Modals: React.FC<ChildProps> = ({
   return (
     <Dialog.Portal>
       <Dialog.Overlay
-       className="fixed px-[0.5rem] inset-0 bg-black/50 z-30 backdrop-blur-md"
-      >
+       className="fixed px-[0.5rem] inset-0 bg-black/50 z-30 backdrop-blur-md">
         <motion.div
           variants={overlayVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
-          transition={{ duration: 0.4 }}
-         
-        /> 
+          transition={{ duration: 0.4 }}/> 
       </Dialog.Overlay>
       <Dialog.Content>
         <motion.div
          className="fixed left-1/2 top-4/6   transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-[20px] w-[90%] lg:w-[500px]" 
          style={{ borderRadius: '20px' }}
-         
           variants={modalVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
+          
           transition={{ 
             duration: 0.4,
             ease: [0.22, 1, 0.36, 1]

@@ -18,7 +18,15 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
   const targetValue = 300
   
   // This ensures consistent rendering between server and client
- 
+  useEffect(() => {
+    setIsMounted(true);
+    // Delay animation start to prevent hydration issues
+    const timer = setTimeout(() => {
+      setCurrentValue(targetValue);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="relative lg:w-[573px] m-auto  bg-[#FFFFFF]  rounded-[20px] grid lg:items-start lg:justify-normal md:items-start md:justify-normal items-center justify-center w-fit pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
@@ -40,7 +48,7 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
         <div className="flex flex-col gap-[0.5rem]  lg:pl-0">
           <span className="lg:text-[32px] text-[20px] text-[#121212] font-bold">
             {isHidden ? "⊛⊛⊛⊛⊛⊛" : (
-              isMounted ? (
+              isMounted === true ? (
                 <NumberFlow 
                   value={currentValue}
                   suffix=" USDC"
