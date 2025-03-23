@@ -39,7 +39,7 @@ export default function Dropdown() {
         initial={{ y: "-5%", opacity: 0 }}
         animate={isOpen ? { y: "5%", opacity: 1 } : { y: "0%", opacity: 0 }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="absolute lg:ml-[-2rem] z-50 ml-[-2.7rem] mt-[0rem] lg:mt-0 w-full lg:w-55 bg-white flex flex-col  shadow-lg rounded-2xl"
+        className="absolute lg:ml-[-2rem] z-50 ml-[-2.7rem] mt-[0rem] lg:mt-0 w-45 lg:w-55 bg-white flex flex-col  shadow-lg rounded-2xl"
       
       >
         <button className="flex gap-[0.5rem] w-full px-4 py-4  hover:bg-[#EEEEEE] cursor-pointer duration-500 rounded-t-2xl">

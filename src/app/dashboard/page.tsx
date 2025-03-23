@@ -69,7 +69,7 @@ export default function Page() {
        setOpen(true)
       }
   return (
-    <div className='w-screen grid items-center overflow-hidden lg:gap-[2rem] gap-[2rem] justify-center bg-[#f7f7f7] min-h-screen'>
+    <div className='w-screen grid items-center overflow-hidden lg:gap-[2rem] gap-[2rem] justify-center bg-[#f7f7f7] h-full'>
       <div className="flex justify-between w-screen lg:w-[100%] lg:mt-[4rem] mt-[1rem] px-[0.7rem] lg:px-0 items-center">
         <Image 
           src={logo}
