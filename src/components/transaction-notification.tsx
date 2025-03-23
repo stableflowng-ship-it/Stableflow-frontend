@@ -124,14 +124,14 @@ export default function TransactionNotification({
             label="Clear all"
             onClick={clearAllNotifications}
             disabled={isClearing || notifications.length === 0}
-            className="cursor-pointer mr-[1rem] lg:mr-0"
+            className="cursor-pointer lg:mr-0"
           >
             Clear all
           </TertiaryButton>
         </div>
 
         {/* Stacked notifications */}
-        <div className="relative w-full" style={{ height: "120px" }}>
+        <div className="relative grid  w-[98%]" style={{ height: "120px" }}>
           {lastThree.map((notification, index) => {
             // Use different sizes based on screen size but allow for full width
             const sizes = [
@@ -145,7 +145,7 @@ export default function TransactionNotification({
             return (
               <div
                 key={notification.unique_id}
-                className={`absolute left-1/2 transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
+                className={`absolute left-1/2 flex items-center justify-center transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
                 style={{
                   width: sizes[index].width,
                   height: sizes[index].height,

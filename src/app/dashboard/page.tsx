@@ -110,7 +110,9 @@ export default function Page() {
             </TertiaryButton>
 : ''}
           </div>
-          <VolumeWidget openDialog={openModal} />
+        
+          <VolumeWidget openDialog={openModal}  />
+         
           </Dialog.Root>
         </div>
 
