@@ -20,13 +20,14 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
   // This ensures consistent rendering between server and client
   useEffect(() => {
     setIsMounted(true);
-    // Delay animation start to prevent hydration issues
+if (isMounted === true) {
     const timer = setTimeout(() => {
       setCurrentValue(targetValue);
     }, 500);
-    
+
     return () => clearTimeout(timer);
-  }, []);
+  }
+  }, [currentValue,isMounted]);
 
   return (
     <div className="relative lg:w-[573px] m-auto  bg-[#FFFFFF]  rounded-[20px] grid lg:items-start lg:justify-normal md:items-start md:justify-normal items-center justify-center w-fit pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
