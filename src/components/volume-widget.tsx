@@ -13,21 +13,12 @@ interface OpenModal {
 }
 export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
   const [isHidden, setIsHidden] = useState(false)
-  const [currentValue, setCurrentValue] = useState(0)
+  const [currentValue, setCurrentValue] = useState(300)
   const [isMounted, setIsMounted] = useState(false)
   const targetValue = 300
   
   // This ensures consistent rendering between server and client
-  useEffect(() => {
-    setIsMounted(true);
-if (isMounted === true) {
-    const timer = setTimeout(() => {
-      setCurrentValue(targetValue);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }
-  }, [currentValue,isMounted]);
+ 
 
   return (
     <div className="relative lg:w-[573px] m-auto  bg-[#FFFFFF]  rounded-[20px] grid lg:items-start lg:justify-normal md:items-start md:justify-normal items-center justify-center w-fit pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
@@ -49,12 +40,12 @@ if (isMounted === true) {
         <div className="flex flex-col gap-[0.5rem]  lg:pl-0">
           <span className="lg:text-[32px] text-[20px] text-[#121212] font-bold">
             {isHidden ? "⊛⊛⊛⊛⊛⊛" : (
-              isMounted === true ? (
+             
                 <NumberFlow 
                   value={currentValue}
                   suffix=" USDC"
                 />
-              ) : "0 USDC"
+              
             )}
           </span>
 
