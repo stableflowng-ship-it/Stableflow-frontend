@@ -13,7 +13,7 @@ interface OpenModal {
 }
 export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
   const [isHidden, setIsHidden] = useState(false)
-  const [currentValue, setCurrentValue] = useState(300)
+  const [currentValue, setCurrentValue] = useState(0)
   const [isMounted, setIsMounted] = useState(false)
   const targetValue = 300
   
@@ -40,12 +40,12 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
         <div className="flex flex-col gap-[0.5rem]  lg:pl-0">
           <span className="lg:text-[32px] text-[20px] text-[#121212] font-bold">
             {isHidden ? "⊛⊛⊛⊛⊛⊛" : (
-             
+              isMounted ? (
                 <NumberFlow 
                   value={currentValue}
                   suffix=" USDC"
                 />
-              
+              ) : "300 USDC"
             )}
           </span>
 
