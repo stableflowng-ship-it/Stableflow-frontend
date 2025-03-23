@@ -105,8 +105,9 @@ const Modals: React.FC<ChildProps> = ({
       </Dialog.Overlay>
       <Dialog.Content>
         <motion.div
-          className="fixed left-1/2 top-1/2 lg:top-4/6 transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-[20px] w-[80%] lg:w-[500px]" 
-          style={{ borderRadius: '20px' }}
+         className="fixed left-1/2 top-4/6   transform -translate-x-1/2 -translate-y-1/2 bg-white z-50 p-6 rounded-[20px] w-[90%] lg:w-[500px]" 
+         style={{ borderRadius: '20px' }}
+         
           variants={modalVariants}
           initial="hidden"
           animate="visible"

@@ -101,7 +101,18 @@ alt='usd logo'
 </div>
 <div className='flex flex-col gap-[0.2rem]'>
 <h4 className='text-[15px] font-[500] text-[#121212]'>+{""}{""} {transact.crypto_value}</h4>
-<h3  className={` font-[500] text-[13px] ${transact.status === "completed" ? "text-green-500" : transact.status === "pending" ? "text-yellow-500" : ""}`}>{transact.status}</h3>
+<h3
+  className={`font-[500] text-[13px] ${
+    transact.status === "completed"
+      ? "text-green-500"
+      : transact.status === "pending"
+      ? "text-yellow-500"
+      : "text-red-500"
+  }`}
+>
+  {transact.status}
+</h3>
+
    </div>
    </div>
    </Dialog.Trigger> 
@@ -134,7 +145,17 @@ alt='usd logo'
                   <div className="mt-2 grid  lg:w-full gap-[2rem]">
                   <div className='bg- pl-[1rem] lg:pl-0 pr-[1rem] lg:pr-0 bg-[#F7F7F7] py-[0.5rem]  lg:w-full  flex  flex-row justify-between items-center  rounded-2xl '>
                   <div className='grid gap-[0.3rem] pt-[0.3rem] lg:px-[1rem]'>
-                  <div  className={`flex items-center justify-center font-[500] text-[15px] ${transact.status === "completed" ? "text-green-500 bg-green-100 py-[0.1rem] px-[0.1rem] rounded-md" : transact.status === "pending" ? "text-yellow-500 bg-yellow-100 py-[0.1rem] px-[0.1rem] rounded-md"  : "text-red-500 bg-red-100 py-[0.1rem] px-[0.1rem] rounded-md"}`}>{transact.status}</div>
+                  <h3
+  className={`font-[500] text-[13px] ${
+    transact.status === "completed"
+      ? "text-green-500"
+      : transact.status === "pending"
+      ? "text-yellow-500"
+      : "text-red-500"
+  }`}
+>
+  {transact.status}
+</h3>
                   <div className='flex gap-[0.5rem] items-center justify-center'>
                   <Image 
 src={usd}
