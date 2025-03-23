@@ -79,7 +79,7 @@ const TransactionHistoryContainer: React.FC<TransactionHistoryContainerProps> = 
 
           <Dialog.Root key={transact.unique_id} >
             <Dialog.Trigger asChild>
-<div className='cursor-pointer flex flex-row justify-between items-center w-full border-b-2 p-[0.5rem] border-[#F1F1F1]' 
+<div className='cursor-pointer flex flex-row justify-between items-center w-full border-b-2 p-[0.5rem] px-[0.5rem] border-[#F1F1F1]' 
 onClick={() => setSelectedTransaction(transact)}
  >
 <div className='flex flex-row gap-[1.5rem]'> 
@@ -101,7 +101,7 @@ alt='usd logo'
 </div>
 <div className='flex flex-col gap-[0.2rem]'>
 <h4 className='text-[15px] font-[500] text-[#121212]'>+{""}{""} {transact.crypto_value}</h4>
-<h3  className={` font-[500] text-[13px] ${transact.status === "completed" ? "text-green-500" : transact.status === "pending" ? "text-yellow-500" : "text-red-500"}`}>{transact.status}</h3>
+<h3  className={` font-[500] text-[13px] ${transact.status === "completed" ? "text-green-500" : transact.status === "pending" ? "text-yellow-500" : ""}`}>{transact.status}</h3>
    </div>
    </div>
    </Dialog.Trigger> 
@@ -147,7 +147,7 @@ alt='usd logo'
                   </div>
                   <h4 className='text-[14px] text-[#7C7C7C] font-[500] pr-[0.5rem]'>You recieved {""}{transact.naira_received}</h4>
                   </div>
-                  <div className='grid gap-[1rem] '>
+                  <div className='grid gap-[1rem]  '>
                   <div className='flex items-center justify-between'>
                   <p className='font-[500] text-[#7C7C7C] text-[16px]'>Crypto value</p>
                   <div className='flex gap-[0.5rem] items-center justify-center'>
@@ -186,7 +186,10 @@ alt='usd logo'
                   </div>
                   <div className='flex items-center justify-between'>
                   <p className='font-[500] text-[#7C7C7C] text-[16px]'>Status</p>
-                  <div  className={`flex items-center justify-center font-[500] text-[13px] ${transact.status === "completed" ? "text-green-500 bg-green-100 py-[0.2rem] px-[0.3rem] rounded-md" : transact.status === "pending" ? "text-yellow-500 bg-yellow-100 py-[0.2rem] px-[0.3rem] rounded-md"  : "text-red-500 bg-red-100 py-[0.2rem] px-[0.3rem] rounded-md"}`}>{transact.status}</div>
+                  <div 
+                  
+                  
+                  className={`flex items-center justify-center font-[500] text-[13px] ${transact.status === "completed" ? "text-green-500 bg-green-100 py-[0.2rem] px-[0.3rem] rounded-md" :  transact.status === "pending" ? "text-yellow-500 bg-yellow-100 py-[0.2rem] px-[0.3rem] rounded-md"  : ""}`}>{transact.status}</div>
                   </div>
                   </div>
                   </div>

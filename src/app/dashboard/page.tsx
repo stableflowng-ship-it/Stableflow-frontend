@@ -70,7 +70,7 @@ export default function Page() {
       }
   return (
     <div className='w-screen grid items-center overflow-hidden lg:gap-[2rem] gap-[2rem] justify-center bg-[#f7f7f7] h-full'>
-      <div className="flex justify-between w-screen lg:w-[100%] lg:mt-[4rem] mt-[2.5rem] px-[1.5rem] lg:border-b-0 border-b-[2px] pb-[0.5rem] lg:pb-0 border-[#F1F1F1] lg:px-0 items-center">
+      <div className="flex justify-between w-screen lg:w-[100%] lg:mt-[4rem] mt-[1.5rem] px-[1rem] lg:border-b-0 border-b-[2px] pb-[0.5rem] lg:pb-0 border-[#F1F1F1] lg:px-0 items-center">
         <Image 
           src={logo}
           alt="logo"

@@ -44,7 +44,7 @@ export default function Dropdown() {
       >
         <button className="flex gap-[0.5rem] w-full px-4 py-4  hover:bg-[#EEEEEE] cursor-pointer duration-500 rounded-t-2xl">
           <Image src={trash} alt="logo" width={20} height={20} className="cursor-pointer" />
-          <h3 className="font-bold bg-gradient-to-r from-[#4BA2FF] to-[#6A6BF7] bg-clip-text text-transparent text-[14px]">
+          <h3 className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent  text-[14px]">
             Export wallet
           </h3>
         </button>

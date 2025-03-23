@@ -1,9 +1,8 @@
 // tailwind.config.js
 module.exports = {
     content: [
-      './app/**/*.{js,ts,jsx,tsx}',       // if using the app directory
-      './pages/**/*.{js,ts,jsx,tsx}',     // for pages
-      './components/**/*.{js,ts,jsx,tsx}' // for components
+      "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",// for components
     ],
     safelist: [
       'text-green-500', 'bg-green-100',

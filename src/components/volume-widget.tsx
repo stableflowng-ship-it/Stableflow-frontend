@@ -70,13 +70,13 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
         <div className="lg:mt-[45px] mt-[35px]  flex gap-[5px]  items-center  lg:justify-items-start lg:items-start  lg:gap-[12px] ">
           <PrimaryButton className="cursor-pointer flex  lg:m-0 items-center justify-center m-auto" shortcut="" onClick={openDialog}>
             <div className="flex items-center w-fit">
-              <Zap className="mr-2 h-4 w-4" />
+              <Zap className=" h-3 w-3 mr-1" />
               <span className="text-[12px] lg:text-[16px] ">Start accepting crypto</span>
             </div>
           </PrimaryButton>
 
           <SecondaryButton className="cursor-pointer w-full">
-            <div className="flex flex-row items-center whitespace-nowrap gap-[0.1rem] ">
+            <div className="flex flex-row items-center w-full whitespace-nowrap  ">
               <Image
                 src={share}
                 width={15}
