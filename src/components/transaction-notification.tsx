@@ -78,7 +78,7 @@ export default function TransactionNotification({
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col items-center justify-center">
       <div
         className={`flex flex-col w-full items-start p-0 gap-4 ${containerClearing ? "animate-container-clear" : ""}`}
       >
@@ -135,9 +135,9 @@ export default function TransactionNotification({
           {lastThree.map((notification, index) => {
             // Use different sizes based on screen size but allow for full width
             const sizes = [
-              { width: "95%", height: "61px", padding: "12px 13.9763px", gap: "6.99px" },
-              { width: "90%", height: "64px", padding: "11.5539px", gap: "5.78px" },
-              { width: "80%", height: "64px", padding: "9.5085px", gap: "4.75px" },
+              { width: "400px", height: "61px", padding: "", gap: "" },
+              { width: "350px", height: "64px", padding: "", gap: "" },
+              { width: "300", height: "64px", padding: "", gap: "" },
             ]
 
             const isClearing = clearingIndices.includes(index)
