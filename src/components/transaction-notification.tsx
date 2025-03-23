@@ -78,7 +78,7 @@ export default function TransactionNotification({
   }
 
   return (
-    <div className="w-full hidden lg:flex ">
+    <div className="w-full ">
       <div
         className={`flex flex-col w-full items-start p-0 gap-4 ${containerClearing ? "animate-container-clear" : ""}`}
       >
