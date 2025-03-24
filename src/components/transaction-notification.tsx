@@ -138,7 +138,7 @@ export default function TransactionNotification({
         <Dialog.Root open={isOpen} onOpenChange={modalclose}>
                      
                     
-        <div className="relative w-screen  " style={{ height: "120px" }} onClick={modalcontrol}>
+        <div className="relative w-full  " style={{ height: "120px" }} onClick={modalcontrol}>
           {lastThree.map((notification, index) => {
             // Use different sizes based on screen size but allow for full width
             const sizes = [
