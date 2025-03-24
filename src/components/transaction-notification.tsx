@@ -152,7 +152,7 @@ export default function TransactionNotification({
             return (
               <div
                 key={notification.unique_id}
-                className={`lg:absolute left-1/2 lg:ml-0 lg:transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
+                className={`lg:absolute lg:left-1/2 left-1/4 lg:ml-0 lg:transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
                 style={{
                   width: sizes[index].width,
                   height: sizes[index].height,
