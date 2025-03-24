@@ -138,7 +138,7 @@ export default function TransactionNotification({
         <Dialog.Root open={isOpen} onOpenChange={modalclose}>
                      
                     
-        <div className="relative w-full  " style={{ height: "120px" }} onClick={modalcontrol}>
+        <div className="relative w-screen  " style={{ height: "120px" }} onClick={modalcontrol}>
           {lastThree.map((notification, index) => {
             // Use different sizes based on screen size but allow for full width
             const sizes = [
@@ -152,7 +152,7 @@ export default function TransactionNotification({
             return (
               <div
                 key={notification.unique_id}
-                className={`lg:absolute lg:left-1/2 left-1/4 lg:ml-0 lg:transform -translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
+                className={`lg:absolute lg:left-1/2 -translate-x-1/4 left-1/4 lg:mr-0 lg:transform lg:-translate-x-1/2 ${isClearing ? "animate-clear-notification" : ""}`}
                 style={{
                   width: sizes[index].width,
                   height: sizes[index].height,
