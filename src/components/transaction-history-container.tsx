@@ -79,7 +79,7 @@ const TransactionHistoryContainer: React.FC<TransactionHistoryContainerProps> = 
 
           <Dialog.Root key={transact.unique_id} >
             <Dialog.Trigger asChild>
-<div className='cursor-pointer flex flex-row justify-between items-center w-full border-b-2 p-[0.5rem] px-[0.5rem] border-[#F1F1F1]' 
+<div className='cursor-pointer flex flex-row justify-between items-center w-full border-b-2 p-[0.5rem] px-[1.2rem] border-[#F1F1F1]' 
 onClick={() => setSelectedTransaction(transact)}
  >
 <div className='flex flex-row gap-[1.5rem]'> 
