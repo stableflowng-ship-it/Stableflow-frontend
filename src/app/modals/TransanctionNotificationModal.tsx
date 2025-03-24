@@ -22,8 +22,10 @@ interface Transactionss {
 
 interface ChildProps {
     notification: Transactionss;
+    modalopen : () => void
+    modalclose : ()=> void
   } 
-const TransanctionNotificationModal : React.FC<ChildProps> = ({ notification }) => {
+const TransanctionNotificationModal : React.FC<ChildProps> = ({ notification,modalclose,modalopen }) => {
   return (
     <Dialog.Portal >
     
@@ -31,9 +33,9 @@ const TransanctionNotificationModal : React.FC<ChildProps> = ({ notification }) 
                 <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+           
             transition={{ duration: 0.4 }}
-           className="fixed z-20 inset-0 duration-500 bg-black/50 backdrop-blur-md"
+           className="fixed z-20 inset-0 duration-500   backdrop-blur-md"
           /> 
                 </Dialog.Overlay>
                
@@ -41,8 +43,7 @@ const TransanctionNotificationModal : React.FC<ChildProps> = ({ notification }) 
   <motion.div
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                exit={{ y: "100%", opacity: 0 }}
-                transition={{ type: "spring", duration :0.2,stiffness: 400,bounce:0.25,mass:0.5, }}
+                transition={{ type: "spring", duration :0.4,stiffness: 400,bounce:0.25,mass:0.5, }}
                  className="z-30 fixed top-1/2 lg:top-3/6 mt-[1rem]  left-1/2 flex flex-col gap-[2rem] transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-2xl shadow-lg w-[80%] lg:w-120"
                  style={{ backgroundImage: "url('/image3.svg')", backgroundPosition: "center" }}
                 >
@@ -115,11 +116,13 @@ alt='usd logo'
                   </div>
                   </div>
                   <div className='flex flex-row w-full gap-[2rem] items-center justify-center'>
-                  <Dialog.Close asChild>
-                    <SecondaryButton className="w-full cursor-pointer py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                  
+                    <SecondaryButton className="w-full cursor-pointer py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                    onClick={modalclose}
+                    >
                       Cancel
                     </SecondaryButton>
-                  </Dialog.Close>
+                
                   <PrimaryButton shortcut=' ' className='flex flex-row items-center justify-center cursor-pointer w-[50%]'>
                   <div className='flex flex-row items-center py-[0.1rem] justify-center gap-[0.2rem] lg:gap-[0.4rem]'>
                   <Image 

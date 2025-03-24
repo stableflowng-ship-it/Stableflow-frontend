@@ -39,8 +39,12 @@ export default function TransactionNotification({
   const [containerClearing, setContainerClearing] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
 
-  
-  
+  function modalcontrol() {
+    setIsOpen(!isOpen)
+  }
+  function modalclose() {
+    setIsOpen(false)
+  }
   const clearAllNotifications = () => {
     if (isClearing) return // Prevent multiple clicks during animation
 
@@ -131,7 +135,10 @@ export default function TransactionNotification({
         </div>
 
         {/* Stacked notifications */}
-        <div className="relative w-full " style={{ height: "120px" }}>
+        <Dialog.Root open={isOpen} onOpenChange={modalclose}>
+                     
+                    
+        <div className="relative w-full " style={{ height: "120px" }} onClick={modalcontrol}>
           {lastThree.map((notification, index) => {
             // Use different sizes based on screen size but allow for full width
             const sizes = [
@@ -185,9 +192,9 @@ export default function TransactionNotification({
                     }}
                   >
                     {/* Notification content */}
-                    <div className="flex flex-row items-center justify-between w-full">
+                    <div className="flex flex-row items-center justify-center lg:justify-between w-full">
                       {/* Left side with icon and text */}
-                      <div className="flex flex-row items-center gap-2">
+                      <div className="flex flex-row items-center  lg:gap-2 gap-[1.5rem]" >
                         {/* Circle icon */}
                         <div
                           className="flex items-center justify-center rounded-full"
@@ -243,25 +250,26 @@ export default function TransactionNotification({
 
                       {/* Right side with button */}
                    
-                      <Dialog.Root>
                      
-                      <Dialog.Trigger asChild>
+                      <div className="hidden lg:flex">
                       <SmallSecondaryButton 
                         text="View transaction"
-                       
                         />
-                         </Dialog.Trigger> 
-                         <TransanctionHistoryModal notification={notification} />
-                        
-</Dialog.Root>
-
+                        </div> 
+                         
+                         <TransanctionHistoryModal modalopen={modalcontrol} modalclose={modalclose} notification={notification} />
+                      
                     </div>
                   </div>
-                </div>        
+                </div> 
+                       
               </div>
             )
           })}
         </div>
+             
+                        </Dialog.Root>
+                        
       </div>
 
       {/* Add animation styles */}
