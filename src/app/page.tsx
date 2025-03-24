@@ -75,21 +75,21 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col  items-center lg:items-baseline gap-[1rem] pt-[5rem] lg:pt-0">
-          <h2 className="lg:text-[37px] text-[25px] font-[600] text-center lg:text-left">
+        <div className=" grid lg:flex lg:flex-col  items-center lg:items-baseline gap-[1rem] pt-[5rem] lg:pt-0">
+          <h2 className="lg:text-[37px] text-[25px] font-[600] text-left">
             Crypto <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent glow-text">accepted.</span> Cash delivered.<span className="text-[#909090]"> <br></br> Everyone </span> <span className="text-[#FFB767]">{';)'}</span> <span className="text-[#909090]">smiles.</span>
           </h2>
-          <h4 className="font-[400] text-center lg:px-0 px-[0.5rem] lg:text-start text-[14px] lg:text-[18px] text-[#24292E]">
+          <h4 className="font-[400] text-left lg:px-0  lg:text-start text-[14px] lg:text-[18px] text-[#24292E]">
             Unlock crypto liquidity for your business effortlessly and receive<br></br> cash instantly. No waiting time. No reconciliation.
           </h4>
         </div>
-        <div className="flex flex-col gap-[16px] w-full items-center  justify-center lg:items-left lg:justify-left">
-          <div className="flex flex-row items-center gap-[5px] px-[1.5rem]">
+        <div className="grid lg:flex lg:flex-col gap-[16px] w-full  items-left justify-left">
+          <div className="flex flex-row items-center gap-[5px] lg:px-[1.5rem]">
             <PrimaryButton className="cursor-pointer" onClick={handleClick}>
-              <h3 className="text-[#FFFFFF] font-[600] lg:mr-[0.5rem] text-[16px]">Start accepting</h3>
+              <h3 className="text-[#FFFFFF] font-[600] lg:mr-[0.5rem] text-[13px] lg:text-[16px]">Start accepting</h3>
             </PrimaryButton>
-            <SecondaryButton className="cursor-pointer">
-              <h3 className="text-black font-[600] lg:mr-[0.5rem] text-[14px] lg:text-[16px]">Apply for payments kit</h3>
+            <SecondaryButton className="cursor-pointer w-full">
+              <h3 className="text-black font-[600] lg:mr-[0.5rem] text-[13px] text-nowrap lg:text-[16px]">Apply for payments kit</h3>
             </SecondaryButton>
           </div>
           <div className="flex text-left">
