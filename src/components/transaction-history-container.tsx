@@ -100,7 +100,7 @@ alt='usd logo'
 </div>
 </div>
 <div className='flex flex-col gap-[0.2rem]'>
-<h4 className='text-[15px] font-[500] text-[#121212]'>+{""}{""} {transact.crypto_value}</h4>
+<h4 className='text-[15px] font-[500] bg-gradient-to-r from-[#1F90FF] to-[#504CF6] text-transparent bg-clip-text'>+{""}{""} {transact.crypto_value}</h4>
 <h3
   className={`font-[500] text-[13px] ${
     transact.status === "completed"
