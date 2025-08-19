@@ -1,18 +1,22 @@
-'use client'
-import React, { useState, useEffect } from 'react'
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import twit from '../../assests/x-logo.png'
-import git from '../../assests/warpcast-logo.svg'
-import newlogo from '../../assests/newlogo.svg'
-import vectorBg from '../../assests/Vector.svg'
+import twit from "../../assests/x-logo.png";
+import git from "../../assests/warpcast-logo.svg";
+import newlogo from "../../assests/newlogo.svg";
+import vectorBg from "../../assests/Vector.svg";
 
 export default function Home() {
-  const targetDate = new Date('2025-03-26T00:00:00Z').getTime(); // March 26, 2025 @ 00:00 UTC
+  const targetDate = new Date("2025-03-26T00:00:00Z").getTime(); // March 26, 2025 @ 00:00 UTC
 
-  const [countdown, setCountdown] = useState<{ hours: number; minutes: number; seconds: number }>({ 
-    hours: 0, 
-    minutes: 0, 
-    seconds: 0 
+  const [countdown, setCountdown] = useState<{
+    hours: number;
+    minutes: number;
+    seconds: number;
+  }>({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
   });
 
   useEffect(() => {
@@ -53,23 +57,26 @@ export default function Home() {
             opacity: 0.8;
           }
         }
-        
+
         @keyframes glowing {
           0% {
-            text-shadow: 0 0 5px rgba(79, 166, 255, 0.5), 0 0 10px rgba(85, 83, 246, 0.3);
+            text-shadow: 0 0 5px rgba(79, 166, 255, 0.5),
+              0 0 10px rgba(85, 83, 246, 0.3);
           }
           50% {
-            text-shadow: 0 0 10px rgba(79, 166, 255, 0.8), 0 0 20px rgba(85, 83, 246, 0.5);
+            text-shadow: 0 0 10px rgba(79, 166, 255, 0.8),
+              0 0 20px rgba(85, 83, 246, 0.5);
           }
           100% {
-            text-shadow: 0 0 5px rgba(79, 166, 255, 0.5), 0 0 10px rgba(85, 83, 246, 0.3);
+            text-shadow: 0 0 5px rgba(79, 166, 255, 0.5),
+              0 0 10px rgba(85, 83, 246, 0.3);
           }
         }
-        
+
         .animate-background {
           animation: backgroundPulse 8s infinite ease-in-out;
         }
-        
+
         .glow-text {
           animation: glowing 2s infinite ease-in-out;
         }
@@ -77,9 +84,9 @@ export default function Home() {
         body {
           overflow: hidden;
         }
-        
+
         .gradient-text {
-          background: linear-gradient(90deg, #4FA6FF 0%, #5553F6 100%);
+          background: linear-gradient(90deg, #4fa6ff 0%, #5553f6 100%);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
@@ -88,7 +95,7 @@ export default function Home() {
       `}</style>
       <div className="flex flex-col pt-[5%] overflow-hidden justify-center h-screen bg-[#1F1F1F] w-full items-center bg-cover bg-center">
         <div className="absolute inset-0 flex items-center justify-center">
-          <Image 
+          <Image
             src={vectorBg}
             alt="background"
             width={1016}
@@ -98,7 +105,7 @@ export default function Home() {
         </div>
         <div className="grid gap-[5rem] z-10">
           <div className="flex justify-between px-[2rem] lg:px-0 items-center z-20">
-            <Image 
+            <Image
               src={newlogo}
               alt="logo"
               width={100}
@@ -124,21 +131,35 @@ export default function Home() {
           </div>
           <div className="flex flex-col pl-[1rem] lg:items-baseline gap-[0.5rem] z-20">
             <h2 className="lg:text-[37px] text-[25px] font-[600] text-white">
-              Crypto <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent glow-text ">accepted.</span> Cash delivered.<span className="text-[#909090]"> <br></br> Everyone </span> <span className="text-[#FFB767]">{';)'}</span> <span className="text-[#909090]">smiles.</span>
+              Crypto{" "}
+              <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent glow-text ">
+                accepted.
+              </span>{" "}
+              Cash delivered.
+              <span className="text-[#909090]">
+                {" "}
+                <br></br> Everyone{" "}
+              </span>{" "}
+              <span className="text-[#FFB767]">{";)"}</span>{" "}
+              <span className="text-[#909090]">smiles.</span>
             </h2>
             <h4 className="font-[400] lg:px-0 px-[0.5rem] lg:text-start text-[15px] lg:text-[18px] text-white">
-              Unlock crypto liquidity for your business effortlessly and receive<br></br> cash instantly. No waiting time. No reconciliation.
+              Unlock crypto liquidity for your business effortlessly and receive
+              <br></br> cash instantly. No waiting time. No reconciliation.
             </h4>
           </div>
           <div className="z-20 flex flex-row gap-[16px] w-full items-center justify-between px-[0.5rem]">
-            <p className="text-[16px] font-[500] text-[#909090]">Countdown till launch</p>
+            <p className="text-[16px] font-[500] text-[#909090]">
+              Countdown till launch
+            </p>
             <p className="text-[20px] font-[900] bg-gradient-to-r from-[#4FA6FF] to-[#555AF7] bg-clip-text text-transparent">
-              {countdown.hours}hrs : {countdown.minutes}min : {countdown.seconds}sec
+              {countdown.hours}hrs : {countdown.minutes}min :{" "}
+              {countdown.seconds}sec
             </p>
           </div>
         </div>
-        
-        <div 
+
+        <div
           style={{
             position: "absolute",
             width: "123px",
@@ -152,7 +173,7 @@ export default function Home() {
             lineHeight: "22px",
             display: "flex",
             alignItems: "center",
-            color: "#8F8F8F"
+            color: "#8F8F8F",
           }}
         >
           Built with ❤️ et ☕

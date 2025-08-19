@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface InputState {
   value: string;
@@ -14,8 +14,8 @@ export const inputSlice = createSlice({
       state.value = action.payload;
     },
     resetInputValue: (state) => {
-        state.value = ""; 
-      },
+      state.value = "";
+    },
   },
 });
 export const { setInputValue, resetInputValue } = inputSlice.actions;

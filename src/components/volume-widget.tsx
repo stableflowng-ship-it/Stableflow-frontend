@@ -1,24 +1,22 @@
-"use client"
-import { useState, useEffect } from "react"
-import { Eye, EyeOff, Zap } from "lucide-react"
-import { PrimaryButton } from "./primary-button"
-import { SecondaryButton } from "./secondary-button"
-import share from '../assests/export.svg'
-import Image from "next/image"
-import NumberFlow from '@number-flow/react'
-
+"use client";
+import { useState, useEffect } from "react";
+import { Eye, EyeOff, Zap } from "lucide-react";
+import { PrimaryButton } from "./primary-button";
+import { SecondaryButton } from "./secondary-button";
+import share from "../assests/export.svg";
+import Image from "next/image";
+import NumberFlow from "@number-flow/react";
 
 interface OpenModal {
   openDialog: () => void; // Function to open dialog
 }
 export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
-  const [isHidden, setIsHidden] = useState(false)
-  const [currentValue, setCurrentValue] = useState(0)
-  const [isMounted, setIsMounted] = useState(false)
-  const targetValue = 300
-  
+  const [isHidden, setIsHidden] = useState(false);
+  const [currentValue, setCurrentValue] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+  const targetValue = 300;
+
   // This ensures consistent rendering between server and client
- 
 
   return (
     <div className="relative lg:w-[573px] m-auto  bg-[#FFFFFF]  rounded-[20px] grid lg:items-start lg:justify-normal md:items-start md:justify-normal items-center justify-center w-fit pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
@@ -26,8 +24,13 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
       <div className="relative  z-10 px-[1rem] py-[16px] lg:pl-[1rem]  ">
         {/* Total volume section with eye icon */}
         <div className="flex items-center">
-          <span className="text-[#B0B0B0] text-[16px] font-medium  lg:pl-0">Total volume</span>
-          <button onClick={() => setIsHidden(!isHidden)} className="ml-2 p-1 rounded-full cursor-pointer hover:bg-gray-100">
+          <span className="text-[#B0B0B0] text-[16px] font-medium  lg:pl-0">
+            Total volume
+          </span>
+          <button
+            onClick={() => setIsHidden(!isHidden)}
+            className="ml-2 p-1 rounded-full cursor-pointer hover:bg-gray-100"
+          >
             {isHidden ? (
               <EyeOff size={16} className="text-[#B0B0B0]" />
             ) : (
@@ -39,13 +42,12 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
         {/* Volume value and Switch to NGN in column layout */}
         <div className="flex flex-col gap-[0.5rem]  lg:pl-0">
           <span className="lg:text-[32px] text-[20px] text-[#121212] font-bold">
-            {isHidden ? "⊛⊛⊛⊛⊛⊛" : (
-              isMounted ? (
-                <NumberFlow 
-                  value={currentValue}
-                  suffix=" USDC"
-                />
-              ) : "300 USDC"
+            {isHidden ? (
+              "⊛⊛⊛⊛⊛⊛"
+            ) : isMounted ? (
+              <NumberFlow value={currentValue} suffix=" USDC" />
+            ) : (
+              "300 USDC"
             )}
           </span>
 
@@ -68,10 +70,16 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
 
         {/* Buttons with 52px spacing from top */}
         <div className="lg:mt-[45px] mt-[35px]  flex gap-[5px]  items-center  lg:justify-items-start lg:items-start  lg:gap-[12px] ">
-          <PrimaryButton className="cursor-pointer flex  lg:m-0 items-center justify-center m-auto" shortcut="" onClick={openDialog}>
+          <PrimaryButton
+            className="cursor-pointer flex  lg:m-0 items-center justify-center m-auto"
+            shortcut=""
+            onClick={openDialog}
+          >
             <div className="flex items-center w-fit">
               <Zap className=" h-3 w-3 mr-1" />
-              <span className="text-[12px] lg:text-[16px] ">Start accepting crypto</span>
+              <span className="text-[12px] lg:text-[16px] ">
+                Start accepting crypto
+              </span>
             </div>
           </PrimaryButton>
 
@@ -84,23 +92,27 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
                 alt="share"
                 className="w-[15px] h-[15px]"
               />
-              <span className="text-[12px] lg:text-[16px] ">Apply for payments kit</span>
+              <span className="text-[12px] lg:text-[16px] ">
+                Apply for payments kit
+              </span>
             </div>
           </SecondaryButton>
         </div>
 
         {/* Supercharge text with 6px spacing */}
         <div className="mt-[6px]">
-          <p className="text-[14px] text-[#B0B0B0]">Supercharge your business with our payment kit</p>
+          <p className="text-[14px] text-[#B0B0B0]">
+            Supercharge your business with our payment kit
+          </p>
         </div>
       </div>
 
       <style jsx>{`
         .dotted-background {
-          background-image: radial-gradient(#E0E0E0 1px, transparent 1px);
+          background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
           background-size: 20px 20px;
         }
       `}</style>
     </div>
-  )
-} 
+  );
+};

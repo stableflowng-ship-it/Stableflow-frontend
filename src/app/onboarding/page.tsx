@@ -1,34 +1,36 @@
-'use client';
-import React, { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
-import logo from '../../assests/loggo.svg';
-import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
-import { TertiaryButton } from '../../components/tertiary-button';
+"use client";
+import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import logo from "../../assests/loggo.svg";
+import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { TertiaryButton } from "../../components/tertiary-button";
 
 // Utility function to combine classNames
 const cn = (...classes: string[]) => {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 };
 
 export default function AuthPage() {
   // States
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isPrimaryPressed, setIsPrimaryPressed] = useState(false);
   const [isSecondaryPressed, setIsSecondaryPressed] = useState(false);
-  const [authState, setAuthState] = useState<'email' | 'otp'>('email');
+  const [authState, setAuthState] = useState<"email" | "otp">("email");
   const router = useRouter();
-  
+
   // OTP States
-  const [verificationState, setVerificationState] = useState<'initial' | 'verifying' | 'error'>('initial');
+  const [verificationState, setVerificationState] = useState<
+    "initial" | "verifying" | "error"
+  >("initial");
   const [countdown, setCountdown] = useState(10);
-  const [otpValues, setOtpValues] = useState(['', '', '', '']);
+  const [otpValues, setOtpValues] = useState(["", "", "", ""]);
   const [shake, setShake] = useState(false);
   const inputRefs = [
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
-    useRef<HTMLInputElement>(null)
+    useRef<HTMLInputElement>(null),
   ];
 
   // Reset countdown when needed
@@ -39,16 +41,16 @@ export default function AuthPage() {
     }
     return () => clearTimeout(timer);
   }, [countdown]);
-  
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Email submitted:', email);
+    console.log("Email submitted:", email);
     // Send the actual email and transition to OTP verification
-    setAuthState('otp');
+    setAuthState("otp");
     // Focus the first OTP input after transition
     setTimeout(() => {
       if (inputRefs[0].current) {
@@ -56,15 +58,15 @@ export default function AuthPage() {
       }
     }, 300);
   };
-  
+
   const handleGoBack = () => {
-    if (authState === 'otp') {
-      setAuthState('email');
-      setVerificationState('initial');
-      setOtpValues(['', '', '', '']);
+    if (authState === "otp") {
+      setAuthState("email");
+      setVerificationState("initial");
+      setOtpValues(["", "", "", ""]);
     } else {
-      console.log('Go back clicked');
-      router.push('/');
+      console.log("Go back clicked");
+      router.push("/");
     }
   };
   const handleChange = (index: number, value: string) => {
@@ -78,7 +80,12 @@ export default function AuthPage() {
     }
   };
   const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
-    if (e.key === "Backspace" && !otpValues[index] && index > 0 && inputRefs[index - 1].current) {
+    if (
+      e.key === "Backspace" &&
+      !otpValues[index] &&
+      index > 0 &&
+      inputRefs[index - 1].current
+    ) {
       inputRefs[index - 1].current?.focus();
     }
   };
@@ -108,32 +115,30 @@ export default function AuthPage() {
   // Verify OTP
   const verifyOTP = () => {
     // Don't proceed if any field is empty
-    if (!otpValues.every((val) => val !== '')) return;
-  
-    setVerificationState('verifying');
-  
-    
+    if (!otpValues.every((val) => val !== "")) return;
+
+    setVerificationState("verifying");
+
     setTimeout(() => {
-      const enteredCode = otpValues.join('');
-  
-      if (enteredCode === '2222') {
-        router.push('/dashboard'); // ✅ Redirect on success
+      const enteredCode = otpValues.join("");
+
+      if (enteredCode === "2222") {
+        router.push("/dashboard"); // ✅ Redirect on success
       } else {
-        setVerificationState('error');
+        setVerificationState("error");
         setShake(true);
-  
+
         // Stop shaking after 500ms
         setTimeout(() => setShake(false), 500);
       }
     }, 1500);
   };
-  
 
   // Handle resend
   const handleResend = () => {
     setCountdown(10);
-    setOtpValues(['', '', '', '']);
-    setVerificationState('initial');
+    setOtpValues(["", "", "", ""]);
+    setVerificationState("initial");
     if (inputRefs[0].current) {
       inputRefs[0].current.focus();
     }
@@ -157,7 +162,7 @@ export default function AuthPage() {
       case "initial":
         return (
           <>
-            If yes, verify the OTP code we sent to{' '}
+            If yes, verify the OTP code we sent to{" "}
             <span className="text-black font-medium">{email}</span>
           </>
         );
@@ -168,7 +173,7 @@ export default function AuthPage() {
       default:
         return (
           <>
-            If yes, verify the OTP code we sent to{' '}
+            If yes, verify the OTP code we sent to{" "}
             <span className="text-black font-medium">{email}</span>
           </>
         );
@@ -189,16 +194,16 @@ export default function AuthPage() {
   };
 
   return (
-    <div 
-      className="min-h-screen flex items-center justify-center p-4 bg-center bg-no-repeat" 
-      style={{ 
+    <div
+      className="min-h-screen flex items-center justify-center p-4 bg-center bg-no-repeat"
+      style={{
         backgroundImage: "url('/image3.svg')",
         backgroundColor: "#f7f7f7",
-        backgroundSize: "1016px 465px" 
+        backgroundSize: "1016px 465px",
       }}
     >
       <AnimatePresence mode="wait">
-        <motion.div 
+        <motion.div
           key={authState}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -208,7 +213,7 @@ export default function AuthPage() {
         >
           {/* Logo */}
           <div className="flex flex-row justify-start items-center w-full">
-            <Image 
+            <Image
               src={logo}
               alt="logo"
               width={135}
@@ -217,18 +222,23 @@ export default function AuthPage() {
               priority
             />
           </div>
-          
-          {authState === 'email' ? (
+
+          {authState === "email" ? (
             /* Email Input Section */
             <div className="flex flex-col gap-6 w-full">
               {/* Heading - with specific line break */}
               <div className="flex flex-col gap-4 w-full">
                 <h1 className="text-[28px] font-semibold leading-tight">
-                  Just your <span className="text-gray-400">email address</span> and<br/>
-                  start accepting <span className="text-blue-500">crypto</span> 💸
+                  Just your <span className="text-gray-400">email address</span>{" "}
+                  and
+                  <br />
+                  start accepting <span className="text-blue-500">
+                    crypto
+                  </span>{" "}
+                  💸
                 </h1>
               </div>
-              
+
               {/* Email Input */}
               <div className="w-full">
                 <form onSubmit={handleSubmit}>
@@ -244,44 +254,46 @@ export default function AuthPage() {
                   />
                 </form>
               </div>
-              
+
               {/* Action Buttons */}
               <div className="flex flex-row gap-4 justify-start items-center">
                 {/* Secondary Button (Go Back) */}
-                <div 
+                <div
                   className="flex flex-col items-start p-0.5 bg-white shadow-sm rounded-xl transition-all duration-200"
                   style={{
-                    boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.05)',
+                    boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.05)",
                   }}
                 >
                   <button
                     className={cn(
                       "flex flex-row justify-center items-center px-4 py-2 gap-2 rounded-lg transition-all duration-200",
-                      isSecondaryPressed ? 'transform scale-95' : 'hover:bg-gray-50'
+                      isSecondaryPressed
+                        ? "transform scale-95"
+                        : "hover:bg-gray-50"
                     )}
                     style={{
-                      background: isSecondaryPressed 
-                        ? 'linear-gradient(180deg, rgba(200, 200, 200, 0.4) 0%, rgba(220, 220, 220, 0.2) 100%), #FFFFFF'
-                        : 'linear-gradient(180deg, rgba(215, 215, 215, 0.25) 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF',
+                      background: isSecondaryPressed
+                        ? "linear-gradient(180deg, rgba(200, 200, 200, 0.4) 0%, rgba(220, 220, 220, 0.2) 100%), #FFFFFF"
+                        : "linear-gradient(180deg, rgba(215, 215, 215, 0.25) 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF",
                       boxShadow: isSecondaryPressed
-                        ? 'inset 0px 0px 4px rgba(168, 168, 168, 0.4)'
-                        : 'inset 0px 0px 2.5px rgba(168, 168, 168, 0.25)'
+                        ? "inset 0px 0px 4px rgba(168, 168, 168, 0.4)"
+                        : "inset 0px 0px 2.5px rgba(168, 168, 168, 0.25)",
                     }}
                     onMouseDown={() => setIsSecondaryPressed(true)}
                     onMouseUp={() => setIsSecondaryPressed(false)}
                     onMouseLeave={() => setIsSecondaryPressed(false)}
                     onClick={handleGoBack}
                   >
-                    <span 
+                    <span
                       className={`text-base font-medium text-center flex items-center transition-colors duration-200 ${
-                        isSecondaryPressed ? 'text-gray-700' : 'text-gray-900'
+                        isSecondaryPressed ? "text-gray-700" : "text-gray-900"
                       }`}
                     >
                       Go back
                     </span>
                   </button>
                 </div>
-                
+
                 {/* Primary Button (Continue) */}
                 <button
                   className={cn(
@@ -294,10 +306,11 @@ export default function AuthPage() {
                     "focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
                   )}
                   style={{
-                    background: 'linear-gradient(135deg, #1F90FF 0%, #504CF6 100%)',
-                    boxShadow: '0px 1px 2px rgba(30, 144, 255, 0.65)',
-                    position: 'relative',
-                    overflow: 'hidden',
+                    background:
+                      "linear-gradient(135deg, #1F90FF 0%, #504CF6 100%)",
+                    boxShadow: "0px 1px 2px rgba(30, 144, 255, 0.65)",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                   onClick={handleSubmit}
                   onMouseDown={() => setIsPrimaryPressed(true)}
@@ -305,38 +318,53 @@ export default function AuthPage() {
                   onMouseLeave={() => setIsPrimaryPressed(false)}
                 >
                   {/* Base overlay gradient with opacity */}
-                  <div 
+                  <div
                     className="absolute inset-0 transition-opacity duration-200"
                     style={{
-                      background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%)',
-                      pointerEvents: 'none',
-                      borderRadius: '10px',
+                      background:
+                        "linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%)",
+                      pointerEvents: "none",
+                      borderRadius: "10px",
                     }}
                   />
-                  
+
                   {/* Hover overlay - only visible on hover */}
-                  <div 
+                  <div
                     className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-200"
                     style={{
-                      background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%)',
-                      pointerEvents: 'none',
-                      borderRadius: '10px',
+                      background:
+                        "linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%)",
+                      pointerEvents: "none",
+                      borderRadius: "10px",
                     }}
                   />
-                  
+
                   {/* Active/Clicked overlay - only visible when active */}
-                  <div 
-                    className={`absolute inset-0 transition-opacity duration-100 ${isPrimaryPressed ? 'opacity-100' : 'opacity-0'}`}
+                  <div
+                    className={`absolute inset-0 transition-opacity duration-100 ${
+                      isPrimaryPressed ? "opacity-100" : "opacity-0"
+                    }`}
                     style={{
-                      background: 'linear-gradient(135deg, rgba(16, 72, 128, 0.3) 0%, rgba(50, 48, 155, 0.3) 100%)',
-                      pointerEvents: 'none',
-                      borderRadius: '10px',
+                      background:
+                        "linear-gradient(135deg, rgba(16, 72, 128, 0.3) 0%, rgba(50, 48, 155, 0.3) 100%)",
+                      pointerEvents: "none",
+                      borderRadius: "10px",
                     }}
                   />
-                  
+
                   <div className="relative z-10 flex items-center gap-2">
                     Continue
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M5 12h14"></path>
                       <path d="m12 5 7 7-7 7"></path>
                     </svg>
@@ -386,7 +414,9 @@ export default function AuthPage() {
                   {otpValues.map((value, index) => (
                     <motion.div
                       key={index}
-                      className={`flex-1 h-16 rounded-lg ${index === 0 ? "rounded-l-3xl" : ""} ${index === 3 ? "rounded-r-3xl" : ""}`}
+                      className={`flex-1 h-16 rounded-lg ${
+                        index === 0 ? "rounded-l-3xl" : ""
+                      } ${index === 3 ? "rounded-r-3xl" : ""}`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
@@ -399,8 +429,17 @@ export default function AuthPage() {
                         onChange={(e) => handleChange(index, e.target.value)}
                         onKeyDown={(e) => handleKeyDown(index, e)}
                         onPaste={index === 0 ? handlePaste : undefined}
-                        className={`w-full h-full text-center text-lg font-medium bg-white rounded-lg ${index === 0 ? "rounded-l-3xl" : ""} ${index === 3 ? "rounded-r-3xl" : ""} 
-                          ${verificationState === "error" ? "border border-red-500" : inputRefs[index].current === document.activeElement ? "border border-blue-500 shadow-md shadow-blue-200" : "border border-gray-200"}
+                        className={`w-full h-full text-center text-lg font-medium bg-white rounded-lg ${
+                          index === 0 ? "rounded-l-3xl" : ""
+                        } ${index === 3 ? "rounded-r-3xl" : ""} 
+                          ${
+                            verificationState === "error"
+                              ? "border border-red-500"
+                              : inputRefs[index].current ===
+                                document.activeElement
+                              ? "border border-blue-500 shadow-md shadow-blue-200"
+                              : "border border-gray-200"
+                          }
                           focus:outline-none focus:border-blue-500 focus:shadow-md focus:shadow-blue-200 transition-all duration-300`}
                         disabled={verificationState === "verifying"}
                         maxLength={1}
@@ -428,7 +467,8 @@ export default function AuthPage() {
 
                   <div className="flex items-center gap-3">
                     {countdown > 0 && verificationState !== "verifying" ? (
-                      <span className="text-sm">Resend code in{' '}
+                      <span className="text-sm">
+                        Resend code in{" "}
                         <AnimatePresence mode="popLayout">
                           <motion.span
                             key={countdown}
@@ -445,7 +485,9 @@ export default function AuthPage() {
                     ) : (
                       <button
                         onClick={handleResend}
-                        className={`${verificationState === "verifying" ? "" : "underline"} text-gray-500 text-sm`}
+                        className={`${
+                          verificationState === "verifying" ? "" : "underline"
+                        } text-gray-500 text-sm`}
                         disabled={verificationState === "verifying"}
                       >
                         Resend
@@ -461,24 +503,26 @@ export default function AuthPage() {
 
               <div className="flex gap-4">
                 {/* Secondary Button (Go Back) */}
-                <div 
+                <div
                   className="flex flex-col items-start p-0.5 bg-white shadow-sm rounded-xl transition-all duration-200"
                   style={{
-                    boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.05)',
+                    boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.05)",
                   }}
                 >
                   <button
                     className={cn(
                       "flex flex-row justify-center items-center px-4 py-2 gap-2 rounded-lg transition-all duration-200",
-                      isSecondaryPressed ? 'transform scale-95' : 'hover:bg-gray-50'
+                      isSecondaryPressed
+                        ? "transform scale-95"
+                        : "hover:bg-gray-50"
                     )}
                     style={{
-                      background: isSecondaryPressed 
-                        ? 'linear-gradient(180deg, rgba(200, 200, 200, 0.4) 0%, rgba(220, 220, 220, 0.2) 100%), #FFFFFF'
-                        : 'linear-gradient(180deg, rgba(215, 215, 215, 0.25) 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF',
+                      background: isSecondaryPressed
+                        ? "linear-gradient(180deg, rgba(200, 200, 200, 0.4) 0%, rgba(220, 220, 220, 0.2) 100%), #FFFFFF"
+                        : "linear-gradient(180deg, rgba(215, 215, 215, 0.25) 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF",
                       boxShadow: isSecondaryPressed
-                        ? 'inset 0px 0px 4px rgba(168, 168, 168, 0.4)'
-                        : 'inset 0px 0px 2.5px rgba(168, 168, 168, 0.25)'
+                        ? "inset 0px 0px 4px rgba(168, 168, 168, 0.4)"
+                        : "inset 0px 0px 2.5px rgba(168, 168, 168, 0.25)",
                     }}
                     onMouseDown={() => setIsSecondaryPressed(true)}
                     onMouseUp={() => setIsSecondaryPressed(false)}
@@ -486,20 +530,21 @@ export default function AuthPage() {
                     onClick={handleGoBack}
                     disabled={verificationState === "verifying"}
                   >
-                    <span 
+                    <span
                       className={`text-base font-medium text-center flex items-center transition-colors duration-200 ${
-                        isSecondaryPressed ? 'text-gray-700' : 'text-gray-900'
+                        isSecondaryPressed ? "text-gray-700" : "text-gray-900"
                       }`}
                     >
                       Go back
                     </span>
                   </button>
                 </div>
-                
+
                 {/* Primary Button (Verify) */}
                 <button
-
-                  onClick={verificationState === "verifying" ? () => {} : verifyOTP}
+                  onClick={
+                    verificationState === "verifying" ? () => {} : verifyOTP
+                  }
                   className={cn(
                     "relative inline-flex items-center justify-center whitespace-nowrap",
                     "px-4 py-2",
@@ -510,46 +555,55 @@ export default function AuthPage() {
                     "focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
                   )}
                   style={{
-                    background: 'linear-gradient(135deg, #1F90FF 0%, #504CF6 100%)',
-                    boxShadow: '0px 1px 2px rgba(30, 144, 255, 0.65)',
-                    position: 'relative',
-                    overflow: 'hidden',
+                    background:
+                      "linear-gradient(135deg, #1F90FF 0%, #504CF6 100%)",
+                    boxShadow: "0px 1px 2px rgba(30, 144, 255, 0.65)",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
-                  disabled={verificationState === "verifying" || !otpValues.every((val) => val !== "")}
+                  disabled={
+                    verificationState === "verifying" ||
+                    !otpValues.every((val) => val !== "")
+                  }
                   onMouseDown={() => setIsPrimaryPressed(true)}
                   onMouseUp={() => setIsPrimaryPressed(false)}
                   onMouseLeave={() => setIsPrimaryPressed(false)}
                 >
                   {/* Base overlay gradient with opacity */}
-                  <div 
+                  <div
                     className="absolute inset-0 transition-opacity duration-200"
                     style={{
-                      background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%)',
-                      pointerEvents: 'none',
-                      borderRadius: '10px',
+                      background:
+                        "linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%)",
+                      pointerEvents: "none",
+                      borderRadius: "10px",
                     }}
                   />
-                  
+
                   {/* Hover overlay - only visible on hover */}
-                  <div 
+                  <div
                     className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-200"
                     style={{
-                      background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%)',
-                      pointerEvents: 'none',
-                      borderRadius: '10px',
+                      background:
+                        "linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%)",
+                      pointerEvents: "none",
+                      borderRadius: "10px",
                     }}
                   />
-                  
+
                   {/* Active/Clicked overlay - only visible when active */}
-                  <div 
-                    className={`absolute inset-0 transition-opacity duration-100 ${isPrimaryPressed ? 'opacity-100' : 'opacity-0'}`}
+                  <div
+                    className={`absolute inset-0 transition-opacity duration-100 ${
+                      isPrimaryPressed ? "opacity-100" : "opacity-0"
+                    }`}
                     style={{
-                      background: 'linear-gradient(135deg, rgba(16, 72, 128, 0.3) 0%, rgba(50, 48, 155, 0.3) 100%)',
-                      pointerEvents: 'none',
-                      borderRadius: '10px',
+                      background:
+                        "linear-gradient(135deg, rgba(16, 72, 128, 0.3) 0%, rgba(50, 48, 155, 0.3) 100%)",
+                      pointerEvents: "none",
+                      borderRadius: "10px",
                     }}
                   />
-                  
+
                   <div className="relative z-10 flex items-center gap-2">
                     {verificationState === "verifying" ? (
                       <div className="flex items-center gap-2">
@@ -571,4 +625,4 @@ export default function AuthPage() {
       </AnimatePresence>
     </div>
   );
-} 
+}

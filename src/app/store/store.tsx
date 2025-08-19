@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { configureStore } from "@reduxjs/toolkit";
 import inputReducer from "./inputSlice";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
