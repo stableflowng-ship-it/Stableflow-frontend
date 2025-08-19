@@ -1,22 +1,36 @@
-"use client"
+"use client";
+import { useState, useEffect } from "react";
+import { Eye, EyeOff, Zap } from "lucide-react";
+import { PrimaryButton } from "./primary-button";
+import { SecondaryButton } from "./secondary-button";
+import share from "../assests/export.svg";
+import Image from "next/image";
+import NumberFlow from "@number-flow/react";
 
-import { useState } from "react"
-import { Eye, EyeOff, Zap } from "lucide-react"
-import { PrimaryButton } from "./primary-button"
-import { SecondaryButton } from "./secondary-button"
+interface OpenModal {
+  openDialog: () => void; // Function to open dialog
+}
+export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
+  const [isHidden, setIsHidden] = useState(false);
+  const [currentValue, setCurrentValue] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+  const targetValue = 300;
 
-export default function VolumeWidget() {
-  const [isHidden, setIsHidden] = useState(false)
-  const [volumeValue] = useState("300 USDC")
+  // This ensures consistent rendering between server and client
 
   return (
-    <div className="relative w-[573px] bg-[#FFFFFF] rounded-[20px] overflow-hidden shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+    <div className="relative lg:w-[573px] m-auto  bg-[#FFFFFF]  rounded-[20px] grid lg:items-start lg:justify-normal md:items-start md:justify-normal items-center justify-center w-fit pl-0 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
       <div className="absolute inset-0 dotted-background"></div>
-      <div className="relative z-10 px-[24px] py-[16px]">
+      <div className="relative  z-10 px-[1rem] py-[16px] lg:pl-[1rem]  ">
         {/* Total volume section with eye icon */}
         <div className="flex items-center">
-          <span className="text-[#B0B0B0] text-[16px] font-medium">Total volume</span>
-          <button onClick={() => setIsHidden(!isHidden)} className="ml-2 p-1 rounded-full hover:bg-gray-100">
+          <span className="text-[#B0B0B0] text-[16px] font-medium  lg:pl-0">
+            Total volume
+          </span>
+          <button
+            onClick={() => setIsHidden(!isHidden)}
+            className="ml-2 p-1 rounded-full cursor-pointer hover:bg-gray-100"
+          >
             {isHidden ? (
               <EyeOff size={16} className="text-[#B0B0B0]" />
             ) : (
@@ -26,11 +40,19 @@ export default function VolumeWidget() {
         </div>
 
         {/* Volume value and Switch to NGN in column layout */}
-        <div className="flex flex-col">
-          <span className="text-[32px] text-[#121212] font-medium">{isHidden ? "⊛⊛⊛⊛⊛⊛" : volumeValue}</span>
+        <div className="flex flex-col gap-[0.5rem]  lg:pl-0">
+          <span className="lg:text-[32px] text-[20px] text-[#121212] font-bold">
+            {isHidden ? (
+              "⊛⊛⊛⊛⊛⊛"
+            ) : isMounted ? (
+              <NumberFlow value={currentValue} suffix=" USDC" />
+            ) : (
+              "300 USDC"
+            )}
+          </span>
 
           {/* Switch to NGN button with gradient text */}
-          <button className="px-[8px] py-[4px] text-[12px] rounded-full w-fit bg-white border border-[#EDEDED] shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
+          <button className="cursor-pointer px-[8px] py-[4px] text-[12px] rounded-full w-fit bg-white border border-[#EDEDED] shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
             <span
               className="inline-block"
               style={{
@@ -47,29 +69,50 @@ export default function VolumeWidget() {
         </div>
 
         {/* Buttons with 52px spacing from top */}
-        <div className="mt-[52px] flex">
-          <PrimaryButton className="mr-[10px]" shortcut="">
-            <div className="flex items-center">
-              <Zap className="mr-2 h-4 w-4" />
-              <span>Start accepting crypto</span>
+        <div className="lg:mt-[45px] mt-[35px]  flex gap-[5px]  items-center  lg:justify-items-start lg:items-start  lg:gap-[12px] ">
+          <PrimaryButton
+            className="cursor-pointer flex  lg:m-0 items-center justify-center m-auto"
+            shortcut=""
+            onClick={openDialog}
+          >
+            <div className="flex items-center w-fit">
+              <Zap className=" h-3 w-3 mr-1" />
+              <span className="text-[12px] lg:text-[16px] ">
+                Start accepting crypto
+              </span>
             </div>
           </PrimaryButton>
 
-          <SecondaryButton>Apply for payments kit</SecondaryButton>
+          <SecondaryButton className="cursor-pointer w-full">
+            <div className="flex flex-row items-center w-full whitespace-nowrap  ">
+              <Image
+                src={share}
+                width={15}
+                height={15}
+                alt="share"
+                className="w-[15px] h-[15px]"
+              />
+              <span className="text-[12px] lg:text-[16px] ">
+                Apply for payments kit
+              </span>
+            </div>
+          </SecondaryButton>
         </div>
 
         {/* Supercharge text with 6px spacing */}
         <div className="mt-[6px]">
-          <p className="text-[14px] text-[#B0B0B0]">Supercharge your business with our payment kit</p>
+          <p className="text-[14px] text-[#B0B0B0]">
+            Supercharge your business with our payment kit
+          </p>
         </div>
       </div>
 
       <style jsx>{`
         .dotted-background {
-          background-image: radial-gradient(#E0E0E0 1px, transparent 1px);
+          background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
           background-size: 20px 20px;
         }
       `}</style>
     </div>
-  )
-} 
+  );
+};
