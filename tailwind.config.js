@@ -10,7 +10,11 @@ module.exports = {
       'text-red-500', 'bg-red-100'
     ],
     theme: {
-      extend: {},
+      extend: {
+        fontFamily: {
+        sf: ['"SF Pro"', 'sans-serif'],
+      },
+      },
     },
     plugins: [],
   }

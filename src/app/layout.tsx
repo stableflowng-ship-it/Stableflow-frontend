@@ -5,11 +5,13 @@ import "./globals.css";
 import Providers from "./providers";
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });
 

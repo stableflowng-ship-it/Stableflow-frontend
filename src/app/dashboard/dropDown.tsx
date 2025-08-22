@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import trash from "../../assests/trash.svg";
 import wrong1 from "../../assests/group.svg";
 import wrong2 from "../../assests/group2.svg";
-import address from "../../assests/image4.svg";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import wallet from "../../assests/wallet-add.svg";
@@ -38,14 +37,19 @@ export default function Dropdown() {
         />
         <h3 className="text-[#121212] font-[500] text-[14px] lg:text-[16px] ">
           {" "}
-          0xb1....5678
+          {/* 0xb1....5678 */}
+          No business
         </h3>
       </button>
 
       {/* Sliding Dropdown */}
       <motion.div
-        initial={{ y: "-5%", opacity: 0 }}
-        animate={isOpen ? { y: "5%", opacity: 1 } : { y: "0%", opacity: 0 }}
+        initial={{ y: "-5%", opacity: 0, display: "none" }}
+        animate={
+          isOpen
+            ? { y: "5%", opacity: 1, display: "block" }
+            : { y: "0%", opacity: 0, display: "none" }
+        }
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="absolute lg:ml-[-2rem] z-50 ml-[-2.7rem] mt-[0rem] lg:mt-0 w-45 lg:w-55 bg-white flex flex-col  shadow-lg rounded-2xl"
       >

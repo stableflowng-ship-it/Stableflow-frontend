@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import {
   PrimaryButton,
@@ -6,6 +8,8 @@ import {
   TransactionHistoryContainer,
   TransactionNotification,
 } from "@/components";
+import StableInput from "@/components/form/StableInput";
+import { useForm } from "react-hook-form";
 
 // Define Transaction type for transactions
 interface Transaction {
@@ -17,6 +21,13 @@ interface Transaction {
 
 export default function ComponentsDemo() {
   // Sample transactions for demonstration
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const sampleTransactions: Transaction[] = [
     {
       id: 1,
@@ -37,6 +48,19 @@ export default function ComponentsDemo() {
 
   return (
     <div className="min-h-screen  bg-[#f7f7f7] pt-6 pb-12 px-8">
+      <div className="bg-white h-[100px]">
+        <form action="" onSubmit={handleSubmit((data) => console.log(data))}>
+          <StableInput
+            label={"mike"}
+            name={"mmm"}
+            placeholder="hhhhh"
+            register={register}
+            errors={errors}
+          />
+          <button>Sumbit</button>
+        </form>
+      </div>
+
       <div className="max-w-6xl mx-auto">
         <h1 className="text-2xl font-bold mb-8">Components Demo</h1>
 
