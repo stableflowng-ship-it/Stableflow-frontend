@@ -6,9 +6,11 @@ import wrong2 from "../../assests/group2.svg";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import wallet from "../../assests/wallet-add.svg";
+import { useBusinessStore } from "@/zustand_store/counter_example";
 
 export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const isPending = useBusinessStore((state) => state.isPending);
   const dropdownRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -38,7 +40,7 @@ export default function Dropdown() {
         <h3 className="text-[#121212] font-[500] text-[14px] lg:text-[16px] ">
           {" "}
           {/* 0xb1....5678 */}
-          No business
+          {isPending ? "Pending" : "No business"}
         </h3>
       </button>
 

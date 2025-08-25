@@ -3,16 +3,19 @@
 import { create } from "zustand";
 
 
-type CounterState = {
-  count: number;
-  increase: () => void;
-  decrease: () => void;
-  reset: () => void;
+type BusinessState = {
+  data: unknown
+  isPending: boolean;
+  isCompleted: boolean;
+  updatePending: () => void;
+  // reset: () => void;
 }
 
-export const useCounterStore = create<CounterState>((set) => ({
-  count: 0,
-  increase: () => set((state) => ({ count: state.count + 1 })),
-  decrease: () => set((state) => ({ count: state.count - 1 })),
-  reset: () => set({ count: 0 }),
+export const useBusinessStore = create<BusinessState>((set) => ({
+  data: {},
+  isPending: false,
+  isCompleted: false,
+  updatePending: () => set(() => ({ isPending: true })),
+  updateCompleted: () => set((state) => ({ isCompleted: state.isCompleted })),
+  // reset: () => set({ count: 0 }),
 }));
