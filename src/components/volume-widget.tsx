@@ -73,12 +73,12 @@ export const VolumeWidget: React.FC<OpenModal> = ({ openDialog }) => {
           <PrimaryButton
             className="cursor-pointer flex  lg:m-0 items-center justify-center m-auto"
             shortcut=""
-            onClick={openDialog}
+            // onClick={openDialog}
           >
             <div className="flex items-center w-fit">
               <Zap className=" h-3 w-3 mr-1" />
               <span className="text-[12px] lg:text-[16px] ">
-                Start accepting crypto
+                Manage your account
               </span>
             </div>
           </PrimaryButton>
