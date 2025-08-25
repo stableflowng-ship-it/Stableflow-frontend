@@ -91,7 +91,7 @@ export default function AuthPage() {
         if (response?.data) {
           router.push("/dashboard");          
         }else {
-          // const data = await response?.json();
+
           setErrorMessage(response?.data.message || "Invalid email or password");
         }
       } catch (error) {
@@ -101,7 +101,6 @@ export default function AuthPage() {
       }  finally {
         setLoading(false);
       }
-        // router.push("/dashboard");
     } else if (authState === "email") {
         if (email) {
           setAuthState("otp");
