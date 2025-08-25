@@ -15,7 +15,7 @@ import { ThumbsUp } from "lucide-react";
 import { useAppDispatch } from "../store/store";
 import { setInputValue } from "../store/inputSlice";
 
-interface ChildProps {
+type ChildProps = {
   closefunction: () => void;
   step: number;
   forward: () => void;
@@ -24,7 +24,7 @@ interface ChildProps {
   checked: boolean;
   finalize: () => void;
   close1: () => void;
-}
+};
 
 // Shared animation variants
 const modalVariants = {
