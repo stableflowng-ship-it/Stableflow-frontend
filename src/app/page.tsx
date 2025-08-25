@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import logo from "../assests/image1.png";
+// import logo from "../assests/image1.png";
+import logo from "../assests/Group 1321314381.svg"
 import twit from "../assests/x-logo.png";
 import git from "../assests/warpcast-logo.svg";
 import { PrimaryButton } from "@/components/primary-button";
@@ -84,10 +85,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className=" ml-[1rem] lg:ml-0 grid lg:flex lg:flex-col  items-center lg:items-baseline gap-[1rem] pt-[5rem] lg:pt-0">
+        <div className=" ml-[1rem] lg:ml-0 grid lg:flex lg:flex-col  items-center lg:items-baseline gap-[1rem] pt-[2rem] lg:pt-0">
           <h2 className="lg:text-[37px] text-[25px] font-[600] text-left">
             Crypto{" "}
-            <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent glow-text">
+            <span className="bg-gradient-to-r from-[#4FA6FF] to-[#5553F6] bg-clip-text text-transparent">
               accepted.
             </span>{" "}
             Cash delivered.
@@ -104,9 +105,9 @@ export default function Home() {
           </h4>
         </div>
         <div className="ml-[1rem] lg:ml-0 grid lg:flex lg:flex-col gap-[16px] w-full  items-left justify-left">
-          <div className="flex flex-row items-center gap-[5px] lg:px-[1.5rem]">
+          <div className="flex flex-row items-center gap-[5px] lg:px-[0.3rem]">
             <PrimaryButton className="cursor-pointer" onClick={handleClick}>
-              <h3 className="text-[#FFFFFF] font-[600] lg:mr-[0.5rem] text-[12px] lg:text-[16px]">
+              <h3 className="text-[#FFFFFF] font-semibold lg:mr-[0.5rem] text-[12px] lg:text-[16px]">
                 Start accepting
               </h3>
             </PrimaryButton>

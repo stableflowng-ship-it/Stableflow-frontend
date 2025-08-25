@@ -104,7 +104,7 @@ function StableInput(props: StableInputType) {
         {label}
       </label>
       <div
-        className={`mt-1 flex items-center gap-3 rounded-[10px] bg-[#F5F5F5] ${
+        className={`mt-1 flex items-center gap-3 rounded-[10px] bg-white shadow-sm  ${
           errors && getNestedValue(errors, name)
             ? `border-red-400`
             : "border-[#F1F1F1]"
@@ -127,7 +127,7 @@ function StableInput(props: StableInputType) {
                 }),
               }
             : {})}
-          className={`w-full border-none bg-transparent text-[#31302B] outline-none placeholder:text-sm placeholder:text-[#CBCBCB] placeholder:font-medium focus:border-[3px] ${inputClass}`}
+          className={`w-full border-none bg-white text-[#31302B] outline-none placeholder:text-sm placeholder:text-[#CBCBCB] placeholder:font-medium focus:border-[3px] ${inputClass}`}
           placeholder={placeholder}
           disabled={disabled}
           maxLength={maxLength}
